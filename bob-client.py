@@ -148,12 +148,12 @@ parser.add_argument(
     choices=apps.keys())
 
 parser.add_argument(
-    "-a", "--createaccount",
+    "-a", "--account",
     type=str,
     help="Create an account with some defaults providing the email")
 
 parser.add_argument(
-    "-sq", "--stockquote",
+    "-sq", "--stock",
     type=str,
     help="Query stock quote from a particular company")
 
@@ -315,10 +315,10 @@ if __name__ == "__main__":
     if args.universities:
         init_university()
 
-    if args.createaccount:
-        create_account(args.createaccount)
+    if args.account:
+        create_account(args.account)
 
-    if args.stockquote:
-        print stock_quote(args.stockquote)
+    if args.stock:
+        print stock_quote(args.stock)
 
     default()
