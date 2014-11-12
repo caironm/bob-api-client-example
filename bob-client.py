@@ -3,7 +3,6 @@
 
 import requests
 import argparse
-import random
 from loremipsum import get_sentences
 
 apps = {
@@ -153,6 +152,11 @@ parser.add_argument(
     type=str,
     help="Create an account with some defaults providing the email")
 
+parser.add_argument(
+    "-sq", "--stockquote",
+    type=str,
+    help="Query stock quote from a particular company")
+
 args = parser.parse_args()
 
 
@@ -233,6 +237,32 @@ def insert_university(code, name):
     requests.post(url, params=values, headers=headers)
 
 
+def stock_quote(symbol):
+    headers = {
+        "Content-Type": "application/json",
+        "Accept": "application/json"}
+
+    values = {
+        "symbol": symbol
+    }
+
+    url = "{0}/bob/stockquote".format(apps[args.app])
+
+    print("Getting stock quote of {0}...".format(symbol))
+
+    response = requests.post(url, params=values, headers=headers)
+
+    print("Done")
+
+    try:
+        quote = response.json()
+
+        return "{0}: {1} {2}".format(
+            symbol, quote["price_last"], quote["price_change"])
+    except:
+        return response
+
+
 def init_university():
     print("Initializing University kind...")
 
@@ -287,5 +317,8 @@ if __name__ == "__main__":
 
     if args.createaccount:
         create_account(args.createaccount)
+
+    if args.stockquote:
+        print stock_quote(args.stockquote)
 
     default()
