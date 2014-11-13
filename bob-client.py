@@ -9,6 +9,7 @@ apps = {
     "broker": "https://3-dot-api-dot-dazzling-rex-760.appspot.com/_ah/api/bob/v3",
     "crm": "https://awesome-caster-760.appspot.com/_ah/api/bob/v1",
     "cc": "https://modular-ethos-760.appspot.com/_ah/api/bob/v2",
+    "local": "http://localhost:41988/_ah/api/bob/v3"
 }
 
 universities = [
@@ -258,25 +259,26 @@ def create_account(email):
     phonenumber = get_sentences(1)[0].split(" ")[0].upper()
 
     values = {
-        "emailaddress": email,
-        "firstname": firstname,
-        "paternallastname": paternallastname,
-        "maternallastname": maternallastname,
-        "password": password,
-        "phonenumber": phonenumber,
-        "agreement": True,
-        "origin": "unitec",
-        "portfolioid": ""
+        "EmailAddress": email,
+        "FirstName": firstname,
+        "PaternalLastName": paternallastname,
+        "MaternalLastName": maternallastname,
+        "Password": password,
+        "PhoneNumber": phonenumber,
+        "Agreement": True,
+        "Origin": "unitec",
+        "PortfolioID": ""
     }
 
     url = "{0}/bob/createaccount".format(apps[args.app])
 
     print("Creating account for '{0}'...".format(email))
 
-    requests.post(url, params=values, headers=headers)
+    response = requests.post(url, params=values, headers=headers)
 
     try:
         print("done.")
+        print(response)
     except:
         print("Not a JSON response")
         print("Failed.")
