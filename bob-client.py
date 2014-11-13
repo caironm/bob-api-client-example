@@ -35,97 +35,97 @@ clusters = [
         "code": "AC",
         "name": "Architecture & Construction",
         "name_br": "Arquitetura e Urbanismo",
-        "name_es": "Arquitetura y Urbanismo"
+        "name_es": "Arquitectura"
     },
     {
         "code": "AG",
         "name": "Agriculture, Food & Natural Resources",
         "name_br": "Agricultura, Alimentação e Recursos Naturais",
-        "name_es": ""
+        "name_es": "Administración y Agronegocios"
     },
     {
         "code": "AR",
         "name": "Arts, A/V Technology & Communications",
         "name_br": "Artes, Tecnologia Audiovisual e Comunicações",
-        "name_es": ""
+        "name_es": "Artes contemporáneas"
     },
     {
         "code": "BU",
         "name": "Business Management & Administration",
         "name_br": "Gestão e Administração de Negócios",
-        "name_es": ""
+        "name_es": "Administración y Negocios"
     },
     {
         "code": "ED",
         "name": "Education & Training",
         "name_br": "Educação e Capacitação",
-        "name_es": ""
+        "name_es": "Educación"
     },
     {
         "code": "FI",
         "name": "Finance",
         "name_br": "Finanças",
-        "name_es": ""
+        "name_es": "Economía y Finanzas"
     },
     {
         "code": "GO",
         "name": "Government & Public Administration",
         "name_br": "Administração Governamental e Pública",
-        "name_es": ""
+        "name_es": "Gobierno y Administración Pública"
     },
     {
         "code": "HS",
         "name": "Health Science",
         "name_br": "Ciências da Saúde",
-        "name_es": ""
+        "name_es": "Ciencias de la Salud"
     },
     {
-        "code": "HR",
+        "code": "HS",
         "name": "Human Services",
         "name_br": "Serviços Sociais",
-        "name_es": ""
+        "name_es": "Ciencias Humanas"
     },
     {
         "code": "HT",
         "name": "Hospitality & Tourism",
         "name_br": "Hotelaria e Turismo",
-        "name_es": ""
+        "name_es": "Hotelería"
     },
     {
         "code": "IT",
         "name": "Information Technology",
         "name_br": "Tecnologia da Informação",
-        "name_es": ""
+        "name_es": "Tecnología informática"
     },
     {
         "code": "LA",
         "name": "Law, Public Safety, Corrections & Security",
         "name_br": "Direito, Segurança Pública, Serviços Correcionais e Segurança",
-        "name_es": ""
+        "name_es": "Derecho"
     },
     {
         "code": "MF",
         "name": "Manufacturing",
         "name_br": "Manufatura",
-        "name_es": ""
+        "name_es": "Ingeniería Industrial"
     },
     {
         "code": "MK",
         "name": "Marketing",
         "name_br": "Marketing",
-        "name_es": ""
+        "name_es": "Marketing"
     },
     {
         "code": "SC",
         "name": "Science, Technology, Engineering & Math",
         "name_br": "Ciências, Tecnologia, Engenharia e Matemática",
-        "name_es": ""
+        "name_es": "Ciencias, Ingeniería y Tecnología"
     },
     {
         "code": "TR",
         "name": "Transportation, Distribution & Logistics",
         "name_br": "Transporte, Distribuição e Logística",
-        "name_es": ""
+        "name_es": "Distribución y logística"
     },
 ]
 
@@ -237,32 +237,6 @@ def insert_university(code, name):
     requests.post(url, params=values, headers=headers)
 
 
-def stock_quote(symbol):
-    headers = {
-        "Content-Type": "application/json",
-        "Accept": "application/json"}
-
-    values = {
-        "symbol": symbol
-    }
-
-    url = "{0}/bob/stockquote".format(apps[args.app])
-
-    print("Getting stock quote of {0}...".format(symbol))
-
-    response = requests.post(url, params=values, headers=headers)
-
-    print("Done")
-
-    try:
-        quote = response.json()
-
-        return "{0}: {1} {2}".format(
-            symbol, quote["price_last"], quote["price_change"])
-    except:
-        return response
-
-
 def init_university():
     print("Initializing University kind...")
 
@@ -306,6 +280,32 @@ def create_account(email):
     except:
         print("Not a JSON response")
         print("Failed.")
+
+
+def stock_quote(symbol):
+    headers = {
+        "Content-Type": "application/json",
+        "Accept": "application/json"}
+
+    values = {
+        "symbol": symbol.upper()
+    }
+
+    url = "{0}/bob/stockquote".format(apps[args.app])
+
+    print("Getting stock quote of {0}...".format(symbol.upper()))
+
+    response = requests.post(url, params=values, headers=headers)
+
+    print("Done")
+
+    try:
+        quote = response.json()
+
+        return "{0}: {1} {2}".format(
+            symbol.upper(), quote["price_last"], quote["price_change"])
+    except:
+        return response
 
 
 if __name__ == "__main__":
