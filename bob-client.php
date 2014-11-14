@@ -4,15 +4,15 @@
 
     $data = json_encode(array(
        'Agreement'             => 'true',
-       'EmailAddress'          => 'z00@zero.com',
-       'FirstName'             => 'Dickson',
-       'PaternalLastName'      => 'Deza',
-       'MaternalLastName'      => 'Nasi',
+       'EmailAddress'          => 'darthvader@sithorder.net',
+       'FirstName'             => 'Anakin',
+       'PaternalLastName'      => 'Skywalker',
+       'MaternalLastName'      => 'Unknown',
        'GradeNumber'           => '5',
        'Origin'                => 'UPN',
-       'Password'              => '123456',
-       'PhoneNumber'           => '999888777',
-       'UserName'              => 'dickldn.001@gmail.com'
+       'Password'              => '0123456789',
+       'PhoneNumber'           => '000-76543210',
+       'UserName'              => 'darthvader@sithorder.net'
     ));
 
     $resp = CallAPI("POST", $url, $data);
