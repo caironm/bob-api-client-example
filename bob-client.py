@@ -9,7 +9,7 @@ apps = {
     "broker": "https://3-dot-api-dot-dazzling-rex-760.appspot.com/_ah/api/bob/v3",
     "crm": "https://awesome-caster-760.appspot.com/_ah/api/bob/v1",
     "cc": "https://modular-ethos-760.appspot.com/_ah/api/bob/v2",
-    "local": "http://localhost:8080/_ah/api/bob/v3"
+    "local": "http://localhost:43118/_ah/api/bob/v3"
 }
 
 universities = [
@@ -75,7 +75,7 @@ clusters = [
         "name_es": "Gobierno y Administración Pública"
     },
     {
-        "code": "HS",
+        "code": "HE",
         "name": "Health Science",
         "name_br": "Ciências da Saúde",
         "name_es": "Ciencias de la Salud"
