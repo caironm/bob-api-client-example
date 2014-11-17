@@ -7,8 +7,6 @@ from loremipsum import get_sentences
 
 apps = {
     "broker": "https://3-dot-api-dot-dazzling-rex-760.appspot.com/_ah/api/bob/v3",
-    "crm": "https://awesome-caster-760.appspot.com/_ah/api/bob/v1",
-    "cc": "https://modular-ethos-760.appspot.com/_ah/api/bob/v2",
     "local": "http://localhost:8080/_ah/api/bob/v3"
 }
 
@@ -270,7 +268,7 @@ def create_account(email):
         "Password": password,
         "PhoneNumber": phonenumber,
         "Agreement": True,
-        "Origin": "unitec",
+        "Origin": "upn",
         "PortfolioID": ""
     }
 
