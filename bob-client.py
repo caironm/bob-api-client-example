@@ -6,7 +6,7 @@ import argparse
 from loremipsum import get_sentences
 
 apps = {
-    "broker": "https://3-dot-api-dot-dazzling-rex-760.appspot.com/_ah/api/bob/v3",
+    "dev": "https://3-dot-api-dot-dazzling-rex-760.appspot.com/_ah/api/bob/v3",
     "local": "http://localhost:8080/_ah/api/bob/v3"
 }
 
@@ -21,15 +21,15 @@ universities = [
     },
     {
         "code": "unitec",
-        "name": "Universidad Tecnologica Centroamericana"
+        "name": "Universidad Tecnológica Centroamericana"
     },
     {
         "code": "ceutec",
-        "name": "C.E.U.T.E.C."
+        "name": "Centro Universitario Tecnológico"
     },
     {
         "code": "upn",
-        "name": "U.P.N."
+        "name": "Universiad Privada del Norte"
     },
 ]
 
@@ -176,7 +176,8 @@ def default():
     try:
         response = response.json()
 
-        print("CLUSTERS: %s" % len(response["items"]if "items" in response else []))
+        print("CLUSTERS: %s" % len(
+            response["items"]if "items" in response else []))
     except:
         print("Not a JSON response")
         print("CLUSTERS: Not found")
@@ -189,7 +190,8 @@ def default():
     try:
         response = response.json()
 
-        print("UNIVERSITIES: %s" % len(response["items"]if "items" in response else []))
+        print("UNIVERSITIES: %s" % len(
+            response["items"]if "items" in response else []))
     except:
         print("Not a JSON response")
         print("UNIVERSITIES: Not found")
