@@ -14,6 +14,10 @@ apps = {
 
 universities = [
     {
+        "code": "bob",
+        "name": "Bob Service"
+    },
+    {
         "code": "cc",
         "name": "Slingshot"
     },
@@ -299,7 +303,7 @@ def stock_quote(symbol):
 
     response = requests.post(url, params=values, headers=headers)
 
-    print("Done")
+    print("done")
 
     try:
         quote = response.json()
