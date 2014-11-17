@@ -74,6 +74,7 @@ def create_account(email, university="upn"):
 
     try:
         print("done.")
+        print("Json response:")
         print(response.json())
     except:
         print("Not a JSON response")
