@@ -3,134 +3,9 @@
 
 import requests
 import argparse
+
 from loremipsum import get_sentences
-
-apps = {
-    "dev": "https://3-dot-api-dot-dazzling-rex-760.appspot.com/_ah/api/bob/v3",
-    "local": "http://localhost:8080/_ah/api/bob/v3"
-}
-
-universities = [
-    {
-        "code": "bob",
-        "name": "Bob Service"
-    },
-    {
-        "code": "cc",
-        "name": "Slingshot"
-    },
-    {
-        "code": "unitec",
-        "name": "Universidad Tecnológica Centroamericana"
-    },
-    {
-        "code": "ceutec",
-        "name": "Centro Universitario Tecnológico"
-    },
-    {
-        "code": "upn",
-        "name": "Universiad Privada del Norte"
-    },
-]
-
-clusters = [
-    {
-        "code": "AC",
-        "name": "Architecture & Construction",
-        "name_br": "Arquitetura e Urbanismo",
-        "name_es": "Arquitectura"
-    },
-    {
-        "code": "AG",
-        "name": "Agriculture, Food & Natural Resources",
-        "name_br": "Agricultura, Alimentação e Recursos Naturais",
-        "name_es": "Administración y Agronegocios"
-    },
-    {
-        "code": "AR",
-        "name": "Arts, A/V Technology & Communications",
-        "name_br": "Artes, Tecnologia Audiovisual e Comunicações",
-        "name_es": "Artes contemporáneas"
-    },
-    {
-        "code": "BU",
-        "name": "Business Management & Administration",
-        "name_br": "Gestão e Administração de Negócios",
-        "name_es": "Administración y Negocios"
-    },
-    {
-        "code": "ED",
-        "name": "Education & Training",
-        "name_br": "Educação e Capacitação",
-        "name_es": "Educación"
-    },
-    {
-        "code": "FI",
-        "name": "Finance",
-        "name_br": "Finanças",
-        "name_es": "Economía y Finanzas"
-    },
-    {
-        "code": "GO",
-        "name": "Government & Public Administration",
-        "name_br": "Administração Governamental e Pública",
-        "name_es": "Gobierno y Administración Pública"
-    },
-    {
-        "code": "HE",
-        "name": "Health Science",
-        "name_br": "Ciências da Saúde",
-        "name_es": "Ciencias de la Salud"
-    },
-    {
-        "code": "HS",
-        "name": "Human Services",
-        "name_br": "Serviços Sociais",
-        "name_es": "Ciencias Humanas"
-    },
-    {
-        "code": "HT",
-        "name": "Hospitality & Tourism",
-        "name_br": "Hotelaria e Turismo",
-        "name_es": "Hotelería"
-    },
-    {
-        "code": "IT",
-        "name": "Information Technology",
-        "name_br": "Tecnologia da Informação",
-        "name_es": "Tecnología informática"
-    },
-    {
-        "code": "LA",
-        "name": "Law, Public Safety, Corrections & Security",
-        "name_br": "Direito, Segurança Pública, Serviços Correcionais e Segurança",
-        "name_es": "Derecho"
-    },
-    {
-        "code": "MF",
-        "name": "Manufacturing",
-        "name_br": "Manufatura",
-        "name_es": "Ingeniería Industrial"
-    },
-    {
-        "code": "MK",
-        "name": "Marketing",
-        "name_br": "Marketing",
-        "name_es": "Marketing"
-    },
-    {
-        "code": "SC",
-        "name": "Science, Technology, Engineering & Math",
-        "name_br": "Ciências, Tecnologia, Engenharia e Matemática",
-        "name_es": "Ciencias, Ingeniería y Tecnología"
-    },
-    {
-        "code": "TR",
-        "name": "Transportation, Distribution & Logistics",
-        "name_br": "Transporte, Distribuição e Logística",
-        "name_es": "Distribución y logística"
-    },
-]
+from settings import apps, universities, clusters
 
 parser = argparse.ArgumentParser()
 
@@ -149,6 +24,13 @@ parser.add_argument(
     type=str,
     help="Available apps are ({0})".format(", ".join(apps.keys())),
     choices=apps.keys())
+
+parser.add_argument(
+    "university",
+    type=str,
+    help="Available universities are ({0})".format(
+        ", ".join([u["code"] for u in universities])),
+    choices=[u["code"] for u in universities])
 
 parser.add_argument(
     "-a", "--account",
@@ -197,16 +79,16 @@ def default():
         print("UNIVERSITIES: Not found")
 
 
-def insert_cluster(code, name, name_br="", name_es=""):
+def insert_cluster(code, name, name_local=""):
     headers = {
         "Content-Type": "application/json",
         "Accept": "application/json"}
 
     values = {
+        "university": args.university,
         "code": code,
         "name": name,
-        "name_br": name_br,
-        "name_es": name_es
+        "name_local": name_local
     }
 
     url = "{0}/cluster/insert".format(apps[args.app])
@@ -217,12 +99,11 @@ def insert_cluster(code, name, name_br="", name_es=""):
 def init_cluster():
     print("Initializing Cluster kind...")
 
-    for cluster in clusters:
+    for cluster in clusters[args.university]:
         insert_cluster(
             code=cluster["code"],
             name=cluster["name"],
-            name_br=cluster["name_br"],
-            name_es=cluster["name_es"])
+            name_local=cluster["name_local"])
 
     print("done.")
 
@@ -270,7 +151,7 @@ def create_account(email):
         "Password": password,
         "PhoneNumber": phonenumber,
         "Agreement": True,
-        "Origin": "upn",
+        "Origin": args.university,
         "PortfolioID": ""
     }
 
