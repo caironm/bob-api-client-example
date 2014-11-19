@@ -10,6 +10,11 @@ from settings import apps, universities, countries, clusters, occupations, init
 parser = argparse.ArgumentParser()
 
 parser.add_argument(
+    "-v", "--verbose",
+    help="Show details about the data in the datastore",
+    action="store_true")
+
+parser.add_argument(
     "-init", "--initialize",
     help="Initialize the data store",
     action="store_true")
@@ -348,7 +353,8 @@ def create_account(email):
 
     try:
         print("done.")
-        print(response)
+        print(response.content)
+        # print(dir(response))
     except:
         print("Not a JSON response")
         print("Failed.")
@@ -386,7 +392,7 @@ if __name__ == "__main__":
             create_account(args.account)
         else:
             print(
-                "Specify a univeristy: -v {%s}" % ",".join(
+                "Specify a univeristy: -u {%s}" % ",".join(
                     [u["code"] for u in universities]))
 
     if args.initialize:
@@ -402,4 +408,5 @@ if __name__ == "__main__":
     if args.stock:
         print stock_quote(args.stock)
 
-    default()
+    if args.verbose:
+        default()

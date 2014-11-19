@@ -4,6 +4,7 @@ import os
 import csv
 
 apps = {
+    "mockup": "http://private-c90e-bob15.apiary-mock.com",
     "local": "http://localhost:8080/_ah/api/bob/v3",
     "qa": "https://3-dot-applied-area-757.appspot.com/_ah/api/bob/v3",
     "dev": "https://3-dot-dazzling-rex-760.appspot.com/_ah/api/bob/v3",
