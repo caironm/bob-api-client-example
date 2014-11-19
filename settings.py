@@ -1,204 +1,132 @@
 # -*- coding: utf-8 -*-
 
+import os
+import csv
+
 apps = {
     "local": "http://localhost:8080/_ah/api/bob/v3",
-    "old": "https://1-dot-applied-area-757.appspot.com/_ah/api/bob/v3",
+    "old": "https://3-dot-applied-area-757.appspot.com/_ah/api/bob/v3",
     "default": "https://3-dot-dazzling-rex-760.appspot.com/_ah/api/bob/v3",
     "dev": "https://3-dot-api-dot-dazzling-rex-760.appspot.com/_ah/api/bob/v3",
+}
+
+countries = {
+    "hn": "Honduras",
+    "mx": "Mexico",
+    "cl": "Chile",
+    "pe": "Peru",
+    "ec": "Ecuador",
+    "br": "Brazil",
+    "us": "United States of America",
 }
 
 universities = [
     {
         "code": "bob",
-        "name": "Bob Service"
+        "name": "Bob Service",
+        "country": "hn"
     },
     {
         "code": "cc",
-        "name": "Slingshot"
+        "name": "Slingshot",
+        "country": "us"
     },
     {
         "code": "unitec",
-        "name": "Universidad Tecnológica Centroamericana"
+        "name": "Universidad Tecnológica Centroamericana",
+        "country": "hn"
     },
     {
         "code": "ceutec",
-        "name": "Centro Universitario Tecnológico"
+        "name": "Centro Universitario Tecnológico",
+        "country": "hn"
     },
     {
         "code": "upn",
-        "name": "Universiad Privada del Norte"
+        "name": "Universiad Privada del Norte",
+        "country": "pe"
     },
     {
         "code": "cbs",
-        "name": "CEDEPE Business School"
+        "name": "CEDEPE Business School",
+        "country": "br"
     },
 ]
 
 clusters = {}
 
-clusters["cbs"] = [
-    {
-        "code": "AC",
-        "name": "Architecture & Construction",
-        "name_local": "Arquitetura e Urbanismo",
-    },
-    {
-        "code": "AG",
-        "name": "Agriculture, Food & Natural Resources",
-        "name_local": "Agricultura, Alimentação e Recursos Naturais",
-    },
-    {
-        "code": "AR",
-        "name": "Arts, A/V Technology & Communications",
-        "name_local": "Artes, Tecnologia Audiovisual e Comunicações",
-    },
-    {
-        "code": "BU",
-        "name": "Business Management & Administration",
-        "name_local": "Gestão e Administração de Negócios",
-    },
-    {
-        "code": "ED",
-        "name": "Education & Training",
-        "name_local": "Educação e Capacitação",
-    },
-    {
-        "code": "FI",
-        "name": "Finance",
-        "name_local": "Finanças",
-    },
-    {
-        "code": "GO",
-        "name": "Government & Public Administration",
-        "name_local": "Administração Governamental e Pública",
-    },
-    {
-        "code": "HE",
-        "name": "Health Science",
-        "name_local": "Ciências da Saúde",
-    },
-    {
-        "code": "HS",
-        "name": "Human Services",
-        "name_local": "Serviços Sociais",
-    },
-    {
-        "code": "HT",
-        "name": "Hospitality & Tourism",
-        "name_local": "Hotelaria e Turismo",
-    },
-    {
-        "code": "IT",
-        "name": "Information Technology",
-        "name_local": "Tecnologia da Informação",
-    },
-    {
-        "code": "LA",
-        "name": "Law, Public Safety, Corrections & Security",
-        "name_local": "Direito, Segurança Pública, Serviços \
-        Correcionais e Segurança",
-    },
-    {
-        "code": "MF",
-        "name": "Manufacturing",
-        "name_local": "Manufatura",
-    },
-    {
-        "code": "MK",
-        "name": "Marketing",
-        "name_local": "Marketing",
-    },
-    {
-        "code": "SC",
-        "name": "Science, Technology, Engineering & Math",
-        "name_local": "Ciências, Tecnologia, Engenharia e Matemática",
-    },
-    {
-        "code": "TR",
-        "name": "Transportation, Distribution & Logistics",
-        "name_local": "Transporte, Distribuição e Logística",
-    },
-]
+occupations = {}
 
-clusters["upn"] = [
-    {
-        "code": "AC",
-        "name": "Architecture & Construction",
-        "name_local": "Arquitectura"
-    },
-    {
-        "code": "AG",
-        "name": "Agriculture, Food & Natural Resources",
-        "name_local": "Administración y Agronegocios"
-    },
-    {
-        "code": "AR",
-        "name": "Arts, A/V Technology & Communications",
-        "name_local": "Artes contemporáneas"
-    },
-    {
-        "code": "BU",
-        "name": "Business Management & Administration",
-        "name_local": "Administración y Negocios"
-    },
-    {
-        "code": "ED",
-        "name": "Education & Training",
-        "name_local": "Educación"
-    },
-    {
-        "code": "FI",
-        "name": "Finance",
-        "name_local": "Economía y Finanzas"
-    },
-    {
-        "code": "GO",
-        "name": "Government & Public Administration",
-        "name_local": "Gobierno y Administración Pública"
-    },
-    {
-        "code": "HE",
-        "name": "Health Science",
-        "name_local": "Ciencias de la Salud"
-    },
-    {
-        "code": "HS",
-        "name": "Human Services",
-        "name_local": "Ciencias Humanas"
-    },
-    {
-        "code": "HT",
-        "name": "Hospitality & Tourism",
-        "name_local": "Hotelería"
-    },
-    {
-        "code": "IT",
-        "name": "Information Technology",
-        "name_local": "Tecnología informática"
-    },
-    {
-        "code": "LA",
-        "name": "Law, Public Safety, Corrections & Security",
-        "name_local": "Derecho"
-    },
-    {
-        "code": "MF",
-        "name": "Manufacturing",
-        "name_local": "Ingeniería Industrial"
-    },
-    {
-        "code": "MK",
-        "name": "Marketing",
-        "name_local": "Marketing"
-    },
-    {
-        "code": "SC",
-        "name": "Science, Technology, Engineering & Math",
-        "name_local": "Ciencias, Ingeniería y Tecnología"
-    },
-    {
-        "code": "TR",
-        "name": "Transportation, Distribution & Logistics",
-        "name_local": "Distribución y logística"
-    },
-]
+
+def load_clusters(directory):
+    COL_CODE = 0
+    COL_NAME = 1
+    COL_NAME_ES = 2
+    COL_NAME_MX = 3
+    COL_NAME_CL = 4
+    COL_NAME_PE = 5
+    COL_NAME_EC = 6
+    COL_NAME_BR = 7
+
+    data_file = os.path.join(directory, 'clusters.csv')
+
+    with open(data_file, 'rb') as csvfile:
+        clusterreader = csv.reader(csvfile, delimiter=',', quotechar='"')
+        for row in clusterreader:
+            clusters[row[COL_CODE]] = {
+                "code": row[COL_CODE],
+                "name": row[COL_NAME],
+                "name_es": row[COL_NAME_ES],
+                "name_mx": row[COL_NAME_MX],
+                "name_cl": row[COL_NAME_CL],
+                "name_pe": row[COL_NAME_PE],
+                "name_ec": row[COL_NAME_EC],
+                "name_br": row[COL_NAME_BR]
+            }
+
+
+def load_occupations(directory):
+    COL_CODE = 0
+    COL_NAME = 1
+    COL_NAME_ES = 2
+    COL_CLUSTERS = 3
+    COL_DESCRIPTION = 4
+
+    data_file = os.path.join(directory, 'occupations.csv')
+
+    with open(data_file, 'rb') as csvfile:
+        clusterreader = csv.reader(csvfile, delimiter=',', quotechar='"')
+        for row in clusterreader:
+            occupations[row[COL_CODE]] = {
+                "code": row[COL_CODE],
+                "name": row[COL_NAME],
+                "name_es": row[COL_NAME_ES],
+                "clusters": row[COL_CLUSTERS],
+                "description": row[COL_DESCRIPTION]
+            }
+
+
+def load_occupations_by_country(directory):
+    COL_CODE = 0
+    COL_NAME = 1
+
+    countries_list = countries.keys()
+
+    countries_list.remove("hn")
+    countries_list.remove("us")
+
+    for country in countries_list:
+        data_file = os.path.join(directory, 'occ_{0}.csv'.format(country))
+
+        with open(data_file, 'rb') as csvfile:
+            clusterreader = csv.reader(csvfile, delimiter=',', quotechar='"')
+            for row in clusterreader:
+                occupations[row[COL_CODE]]["name_%s" % country] = row[COL_NAME]
+
+
+def init(directory):
+    load_clusters(directory)
+
+    load_occupations(directory)
+
+    load_occupations_by_country(directory)
