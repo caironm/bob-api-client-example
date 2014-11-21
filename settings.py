@@ -45,7 +45,7 @@ universities = [
     },
     {
         "code": "upn",
-        "name": "Universiad Privada del Norte",
+        "name": "Universidad Privada del Norte",
         "country": "pe"
     },
     {

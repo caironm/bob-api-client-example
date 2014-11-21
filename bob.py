@@ -3,6 +3,8 @@
 
 import requests
 import argparse
+import random
+import json
 
 from loremipsum import get_sentences
 from settings import apps, universities, countries, clusters, occupations, init
@@ -38,6 +40,16 @@ parser.add_argument(
     action="store_true")
 
 parser.add_argument(
+    "-c", "--confirm",
+    type=str,
+    help="Portfolio ID to be confirmed")
+
+parser.add_argument(
+    "-r", "--reject",
+    type=str,
+    help="Portfolio ID to be rejected")
+
+parser.add_argument(
     "-d", "--directory",
     type=str,
     help="Directory where all configuration data live")
@@ -46,6 +58,11 @@ parser.add_argument(
     "-sq", "--stock",
     type=str,
     help="Query stock quote from a particular company")
+
+parser.add_argument(
+    "-m", "--mail",
+    type=str,
+    help="Specify the email to use when creating an account")
 
 args = parser.parse_args()
 
@@ -337,7 +354,7 @@ def create_account():
     phonenumber = get_sentences(1)[0].split(" ")[0].upper()
 
     values = {
-        "EmailAddress": email,
+        "EmailAddress": args.mail if args.mail else email,
         "FirstName": firstname,
         "PaternalLastName": paternallastname,
         "MaternalLastName": maternallastname,
@@ -350,9 +367,43 @@ def create_account():
 
     url = "{0}/bob/createaccount".format(apps[args.app])
 
-    print("Creating account for '{0}'...".format(email))
+    print("Creating account for '{0}'...".format(
+        args.mail if args.mail else email))
 
     response = requests.post(url, params=values, headers=headers)
+
+    try:
+        print("done.")
+        print(response.content)
+        # print(dir(response))
+    except:
+        print("Not a JSON response")
+        print("Failed.")
+
+
+def confirm(portfolioid, message):
+    headers = {
+        "Content-Type": "application/json",
+        "Accept": "application/json"}
+
+    reasons = []
+
+    if message == "RECHAZADO":
+        reasons = get_sentences(random.choice([3, 4, 5]))
+
+    values = {
+        "Message": message,
+        "PortfolioID": portfolioid,
+        "Reason": reasons,
+        "Origin": args.university
+    }
+
+    url = "{0}/bob/confirmation".format(apps[args.app])
+
+    print("Sending {0} confirmation for '{1}'...".format(
+        message, portfolioid))
+
+    response = requests.post(url, data=json.dumps(values), headers=headers)
 
     try:
         print("done.")
@@ -393,6 +444,22 @@ if __name__ == "__main__":
     if args.account:
         if args.university:
             create_account()
+        else:
+            print(
+                "Specify a univeristy: -u {%s}" % ",".join(
+                    [u["code"] for u in universities]))
+
+    if args.confirm:
+        if args.university:
+            confirm(args.confirm, "ACEPTADO")
+        else:
+            print(
+                "Specify a univeristy: -u {%s}" % ",".join(
+                    [u["code"] for u in universities]))
+
+    if args.reject:
+        if args.university:
+            confirm(args.reject, "RECHAZADO")
         else:
             print(
                 "Specify a univeristy: -u {%s}" % ",".join(
