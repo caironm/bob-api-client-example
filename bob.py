@@ -34,8 +34,8 @@ parser.add_argument(
 
 parser.add_argument(
     "-a", "--account",
-    type=str,
-    help="Account email, create an account with some defaults")
+    help="Account email, create an account with some defaults",
+    action="store_true")
 
 parser.add_argument(
     "-d", "--directory",
@@ -322,11 +322,14 @@ def init_country():
     print("done.")
 
 
-def create_account(email):
+def create_account():
     headers = {
         "Content-Type": "application/json",
         "Accept": "application/json"}
 
+    email = "{0}@{1}.net".format(
+        get_sentences(1)[0].split(" ")[0],
+        get_sentences(1)[0].split(" ")[0]).lower()
     firstname = get_sentences(1)[0].split(" ")[0]
     paternallastname = get_sentences(1)[0].split(" ")[0]
     maternallastname = get_sentences(1)[0].split(" ")[0]
@@ -389,7 +392,7 @@ def stock_quote(symbol):
 if __name__ == "__main__":
     if args.account:
         if args.university:
-            create_account(args.account)
+            create_account()
         else:
             print(
                 "Specify a univeristy: -u {%s}" % ",".join(
