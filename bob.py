@@ -432,9 +432,9 @@ def completition(portfolioid):
         "MMDate": d.strftime("%d/%m/%Y")
     }
 
-    url = "{0}/bob/completitionupdate".format(apps[args.app])
+    url = "{0}/bob/completionupdate".format(apps[args.app])
 
-    print("Sending completition update notification for '{0}'...".format(
+    print("Sending completion update notification for '{0}'...".format(
         portfolioid))
 
     response = requests.post(url, data=json.dumps(values), headers=headers)
