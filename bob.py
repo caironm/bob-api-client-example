@@ -5,6 +5,7 @@ import requests
 import argparse
 import random
 import json
+import datetime
 
 from loremipsum import get_sentences
 from settings import apps, universities, countries, clusters, occupations, init
@@ -38,6 +39,11 @@ parser.add_argument(
     "-a", "--account",
     help="Account email, create an account with some defaults",
     action="store_true")
+
+parser.add_argument(
+    "-cu", "--completitionupdate",
+    type=str,
+    help="Portfolio ID to be updated after tests have ended")
 
 parser.add_argument(
     "-c", "--confirm",
@@ -414,6 +420,34 @@ def confirm(portfolioid, message):
         print("Failed.")
 
 
+def completition(portfolioid):
+    headers = {
+        "Content-Type": "application/json",
+        "Accept": "application/json"}
+
+    d = datetime.date.today()
+
+    values = {
+        "PortfolioID": portfolioid,
+        "MMDate": d.strftime("%d/%m/%Y")
+    }
+
+    url = "{0}/bob/completitionupdate".format(apps[args.app])
+
+    print("Sending completition update notification for '{0}'...".format(
+        portfolioid))
+
+    response = requests.post(url, data=json.dumps(values), headers=headers)
+
+    try:
+        print("done.")
+        print(response.content)
+        # print(dir(response))
+    except:
+        print("Not a JSON response")
+        print("Failed.")
+
+
 def stock_quote(symbol):
     headers = {
         "Content-Type": "application/json",
@@ -456,6 +490,9 @@ if __name__ == "__main__":
             print(
                 "Specify a univeristy: -u {%s}" % ",".join(
                     [u["code"] for u in universities]))
+
+    if args.completitionupdate:
+        completition(args.completitionupdate)
 
     if args.reject:
         if args.university:
