@@ -61,11 +61,6 @@ parser.add_argument(
     help="Directory where all configuration data live")
 
 parser.add_argument(
-    "-sq", "--stock",
-    type=str,
-    help="Query stock quote from a particular company")
-
-parser.add_argument(
     "-m", "--mail",
     type=str,
     help="Specify the email to use when creating an account")
@@ -448,32 +443,6 @@ def completition(portfolioid):
         print("Failed.")
 
 
-def stock_quote(symbol):
-    headers = {
-        "Content-Type": "application/json",
-        "Accept": "application/json"}
-
-    values = {
-        "symbol": symbol.upper()
-    }
-
-    url = "{0}/bob/stockquote".format(apps[args.app])
-
-    print("Getting stock quote of {0}...".format(symbol.upper()))
-
-    response = requests.post(url, params=values, headers=headers)
-
-    print("done")
-
-    try:
-        quote = response.json()
-
-        return "{0}: {1} {2}".format(
-            symbol.upper(), quote["price_last"], quote["price_change"])
-    except:
-        return response
-
-
 if __name__ == "__main__":
     if args.account:
         if args.university:
@@ -511,9 +480,6 @@ if __name__ == "__main__":
             init_occupation()
         else:
             print("Specify the data directory: -d DIRECTORY")
-
-    if args.stock:
-        print stock_quote(args.stock)
 
     if args.verbose:
         default()
