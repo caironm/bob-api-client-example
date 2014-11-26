@@ -424,7 +424,9 @@ def completition(portfolioid):
 
     values = {
         "PortfolioID": portfolioid,
-        "MMDate": d.strftime("%d/%m/%Y")
+        "MMDate": d.strftime("%d/%m/%Y"),
+        "ResultURL": "http://localhost",
+        "TerminosCC": "1"
     }
 
     url = "{0}/bob/completionupdate".format(apps[args.app])
