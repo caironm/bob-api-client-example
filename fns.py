@@ -3,10 +3,10 @@
 import requests
 import random
 import json
-import datetime
 
 from loremipsum import get_sentences
 from settings import apps, universities, countries, clusters, occupations
+from settings import completionupdate_results
 
 
 args = None
@@ -365,14 +365,10 @@ def completion(portfolioid):
         "Content-Type": "application/json",
         "Accept": "application/json"}
 
-    d = datetime.date.today()
+    values = completionupdate_results[random.choice([0, 1])]
 
-    values = {
-        "PortfolioID": portfolioid,
-        "MMDate": d.strftime("%d/%m/%Y"),
-        "ResultURL": "http://localhost",
-        "TerminosCC": "1"
-    }
+    values["PortfolioID"] = portfolioid
+    values["ResultURL"] += portfolioid
 
     url = "{0}/bob/completionupdate".format(apps[args.app])
 
