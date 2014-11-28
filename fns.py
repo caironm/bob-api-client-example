@@ -305,6 +305,7 @@ def create_account():
         "MaternalLastName": maternallastname,
         "Password": password,
         "PhoneNumber": phonenumber,
+        "GradeNumber": random.randint(1, 10),
         "Agreement": True,
         "Origin": args.university,
         "PortfolioID": ""
