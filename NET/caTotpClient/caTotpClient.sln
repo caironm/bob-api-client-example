@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "caTotpClient", "caTotpClient\caTotpClient.csproj", "{BDC1D11A-D750-4B92-9705-BC217669D34F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OTPNet", "..\OTPNet\otpnet\OTPNet.csproj", "{F1FD321D-6F2A-4431-8307-6BF959419DBE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BDC1D11A-D750-4B92-9705-BC217669D34F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDC1D11A-D750-4B92-9705-BC217669D34F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDC1D11A-D750-4B92-9705-BC217669D34F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDC1D11A-D750-4B92-9705-BC217669D34F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1FD321D-6F2A-4431-8307-6BF959419DBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1FD321D-6F2A-4431-8307-6BF959419DBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1FD321D-6F2A-4431-8307-6BF959419DBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1FD321D-6F2A-4431-8307-6BF959419DBE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

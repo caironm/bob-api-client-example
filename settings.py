@@ -6,9 +6,9 @@ import csv
 apps = {
     "mockup": "http://private-c90e-bob15.apiary-mock.com",
     "gee": "https://bob-api-test.apigee.net/_ah/api/bob/v3",
-    "local": "http://localhost:8080/_ah/api/bob/v3",
-    "qa": "https://3-dot-api-dot-applied-area-757.appspot.com/_ah/api/bob/v3",
-    "dev": "https://3-dot-dazzling-rex-760.appspot.com/_ah/api/bob/v3",
+    "local": "http://localhost:8080/_ah/api/bob/v1",
+    "dev": "https://1-dot-applied-area-757.appspot.com/_ah/api/bob/v1",
+    "qa": "https://1-dot-dazzling-rex-760.appspot.com/_ah/api/bob/v3",
     "dev3": "https://3-dot-api-dot-dazzling-rex-760.appspot.com/_ah/api/bob/v3"
 }
 

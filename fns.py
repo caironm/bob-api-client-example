@@ -13,65 +13,7 @@ args = None
 
 
 def default():
-    headers = {
-        "Content-Type": "application/json",
-        "Accept": "application/json"}
-
-    # List Countries
-    url = "{0}/country/list".format(apps[args.app])
-
-    response = requests.post(url, headers=headers)
-
-    try:
-        response = response.json()
-
-        print("COUNTRIES: %s" % len(
-            response["items"]if "items" in response else []))
-    except:
-        print("Not a JSON response")
-        print("COUNTRIES: Not found")
-
-    # List Universities
-    url = "{0}/university/list".format(apps[args.app])
-
-    response = requests.post(url, headers=headers)
-
-    try:
-        response = response.json()
-
-        print("UNIVERSITIES: %s" % len(
-            response["items"]if "items" in response else []))
-    except:
-        print("Not a JSON response")
-        print("UNIVERSITIES: Not found")
-
-    # List Clusters
-    url = "{0}/cluster/list".format(apps[args.app])
-
-    response = requests.post(url, headers=headers)
-
-    try:
-        response = response.json()
-
-        print("CLUSTERS: %s" % len(
-            response["items"]if "items" in response else []))
-    except:
-        print("Not a JSON response")
-        print("CLUSTERS: Not found")
-
-    # List Occupations
-    url = "{0}/occupation/list".format(apps[args.app])
-
-    response = requests.post(url, headers=headers)
-
-    try:
-        response = response.json()
-
-        print("OCCUPATIONS: %s" % len(
-            response["items"]if "items" in response else []))
-    except:
-        print("Not a JSON response")
-        print("OCCUPATIONS: Not found")
+    print("BOB Client v1.0")
 
 
 def insert_cluster(
@@ -81,7 +23,9 @@ def insert_cluster(
         name_ec="", name_br=""):
     headers = {
         "Content-Type": "application/json",
-        "Accept": "application/json"}
+        "Accept": "application/json",
+        "BobUniversity": args.university or "",
+        "BobToken": args.token or ""}
 
     uni_list_selected = []
 
@@ -154,7 +98,9 @@ def insert_occupation(
         clusters=""):
     headers = {
         "Content-Type": "application/json",
-        "Accept": "application/json"}
+        "Accept": "application/json",
+        "BobUniversity": args.university or "",
+        "BobToken": args.token or ""}
 
     uni_list_selected = []
 
@@ -234,7 +180,9 @@ def init_occupation():
 def insert_university(code, name, country):
     headers = {
         "Content-Type": "application/json",
-        "Accept": "application/json"}
+        "Accept": "application/json",
+        "BobUniversity": args.university or "",
+        "BobToken": args.token or ""}
 
     values = {
         "code": code,
@@ -261,7 +209,9 @@ def init_uni():
 def insert_country(code, name):
     headers = {
         "Content-Type": "application/json",
-        "Accept": "application/json"}
+        "Accept": "application/json",
+        "BobUniversity": args.university or "",
+        "BobToken": args.token or ""}
 
     values = {
         "code": code,
@@ -287,7 +237,9 @@ def init_country():
 def create_account():
     headers = {
         "Content-Type": "application/json",
-        "Accept": "application/json"}
+        "Accept": "application/json",
+        "BobUniversity": args.university or "",
+        "BobToken": args.token or ""}
 
     email = "{0}@{1}.net".format(
         get_sentences(1)[0].split(" ")[0],
@@ -296,7 +248,7 @@ def create_account():
     paternallastname = get_sentences(1)[0].split(" ")[0]
     maternallastname = get_sentences(1)[0].split(" ")[0]
     password = get_sentences(1)[0].split(" ")[0]
-    phonenumber = get_sentences(1)[0].split(" ")[0].upper()
+    phonenumber = str(random.randint(20000000, 99999999))
 
     values = {
         "EmailAddress": args.mail if args.mail else email,
@@ -305,7 +257,7 @@ def create_account():
         "MaternalLastName": maternallastname,
         "Password": password,
         "PhoneNumber": phonenumber,
-        "GradeNumber": random.randint(1, 10),
+        "GradeNumber": random.randint(5, 10),
         "Agreement": True,
         "Origin": args.university,
         "PortfolioID": ""
@@ -330,7 +282,9 @@ def create_account():
 def confirm(portfolioid, message):
     headers = {
         "Content-Type": "application/json",
-        "Accept": "application/json"}
+        "Accept": "application/json",
+        "BobUniversity": args.university or "",
+        "BobToken": args.token or ""}
 
     reasons = []
 
@@ -363,7 +317,9 @@ def confirm(portfolioid, message):
 def completion(portfolioid):
     headers = {
         "Content-Type": "application/json",
-        "Accept": "application/json"}
+        "Accept": "application/json",
+        "BobUniversity": args.university or "",
+        "BobToken": args.token or ""}
 
     values = completionupdate_results[random.choice([0, 1])]
 

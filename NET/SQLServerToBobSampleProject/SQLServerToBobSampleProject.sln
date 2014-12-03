@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "SQLServerToBobSampleProject", "SQLServerToBobSampleProject\SQLServerToBobSampleProject.sqlproj", "{E4F636ED-4A79-4C70-BEB4-EA851F9E0FA9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OTPNet", "..\OTPNet\otpnet\OTPNet.csproj", "{F1FD321D-6F2A-4431-8307-6BF959419DBE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E4F636ED-4A79-4C70-BEB4-EA851F9E0FA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4F636ED-4A79-4C70-BEB4-EA851F9E0FA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4F636ED-4A79-4C70-BEB4-EA851F9E0FA9}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{E4F636ED-4A79-4C70-BEB4-EA851F9E0FA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4F636ED-4A79-4C70-BEB4-EA851F9E0FA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4F636ED-4A79-4C70-BEB4-EA851F9E0FA9}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{F1FD321D-6F2A-4431-8307-6BF959419DBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1FD321D-6F2A-4431-8307-6BF959419DBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1FD321D-6F2A-4431-8307-6BF959419DBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1FD321D-6F2A-4431-8307-6BF959419DBE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

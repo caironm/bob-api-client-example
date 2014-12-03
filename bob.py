@@ -61,6 +61,11 @@ parser.add_argument(
     help="Directory where all configuration data live")
 
 parser.add_argument(
+    "-t", "--token",
+    type=str,
+    help="TOTP token")
+
+parser.add_argument(
     "-m", "--mail",
     type=str,
     help="Specify the email to use when creating an account")
