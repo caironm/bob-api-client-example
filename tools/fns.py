@@ -92,8 +92,6 @@ def init_cluster():
             name_br=cluster["name_br"]
         )
 
-    print("done.")
-
 
 def insert_occupation(
         code, name, description,
@@ -182,8 +180,6 @@ def init_occupation():
             clusters=occupation["clusters"]
         )
 
-    print("done.")
-
 
 def insert_university(code, name, country):
     totp = pyotp.TOTP(str(args.token) or "0000000000000000")
@@ -213,8 +209,6 @@ def init_uni():
         insert_university(
             code=university["code"],
             name=university["name"], country=university["country"])
-
-    print("done.")
 
 
 def cleards():
@@ -263,8 +257,6 @@ def init_country():
             code=key,
             name=countries[key])
 
-    print("done.")
-
 
 def create_account():
     totp = pyotp.TOTP(str(args.token) or "0000000000000000")
@@ -306,9 +298,7 @@ def create_account():
     response = requests.post(url, params=values, headers=headers)
 
     try:
-        print("done.")
         print(response.content)
-        # print(dir(response))
     except:
         print("Not a JSON response")
         print("Failed.")
@@ -344,9 +334,7 @@ def confirm(portfolioid, message):
     response = requests.post(url, data=json.dumps(values), headers=headers)
 
     try:
-        print("done.")
         print(response.content)
-        # print(dir(response))
     except:
         print("Not a JSON response")
         print("Failed.")
@@ -375,9 +363,7 @@ def completion(portfolioid):
     response = requests.post(url, data=json.dumps(values), headers=headers)
 
     try:
-        print("done.")
         print(response.content)
-        # print(dir(response))
     except:
         print("Not a JSON response")
         print("Failed.")
