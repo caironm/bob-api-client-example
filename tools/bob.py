@@ -6,7 +6,7 @@ import fns
 
 from settings import apps, universities, init
 
-from fns import default, init_cluster
+from fns import default, init_cluster, cleards
 from fns import init_occupation, init_uni
 from fns import init_country, create_account, confirm, completion
 
@@ -46,6 +46,11 @@ parser.add_argument(
     help="Portfolio ID to be updated after tests have ended")
 
 parser.add_argument(
+    "-cds", "--cleardatastore",
+    help="Clear the datastore before any further operations",
+    action="store_true")
+
+parser.add_argument(
     "-c", "--confirm",
     type=str,
     help="Portfolio ID to be confirmed")
@@ -63,7 +68,7 @@ parser.add_argument(
 parser.add_argument(
     "-t", "--token",
     type=str,
-    help="TOTP token")
+    help="Bob token secret")
 
 parser.add_argument(
     "-m", "--mail",
@@ -75,35 +80,38 @@ if __name__ == "__main__":
     args = parser.parse_args()
     fns.args = args
 
-    if args.account:
-        if args.university:
+    if fns.args.cleardatastore:
+        cleards()
+
+    if fns.args.account:
+        if fns.args.university:
             create_account()
         else:
             print(
                 "Specify a univeristy: -u {%s}" % ",".join(
                     [u["code"] for u in universities]))
 
-    if args.confirm:
-        if args.university:
-            confirm(args.confirm, "ACEPTADO")
+    if fns.args.confirm:
+        if fns.args.university:
+            confirm(fns.args.confirm, "ACEPTADO")
         else:
             print(
                 "Specify a univeristy: -u {%s}" % ",".join(
                     [u["code"] for u in universities]))
 
-    if args.completionupdate:
-        completion(args.completionupdate)
+    if fns.args.completionupdate:
+        completion(fns.args.completionupdate)
 
-    if args.reject:
-        if args.university:
-            confirm(args.reject, "RECHAZADO")
+    if fns.args.reject:
+        if fns.args.university:
+            confirm(fns.args.reject, "RECHAZADO")
         else:
             print(
                 "Specify a univeristy: -u {%s}" % ",".join(
                     [u["code"] for u in universities]))
 
-    if args.initialize:
-        if args.directory:
+    if fns.args.initialize:
+        if fns.args.directory:
             init(args.directory)
             init_country()
             init_uni()

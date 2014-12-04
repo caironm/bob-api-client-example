@@ -3,6 +3,7 @@
 import requests
 import random
 import json
+import pyotp
 
 from loremipsum import get_sentences
 from settings import apps, universities, countries, clusters, occupations
@@ -21,11 +22,15 @@ def insert_cluster(
         name_es="", name_mx="",
         name_cl="", name_pe="",
         name_ec="", name_br=""):
+
+    totp = pyotp.TOTP(str(args.token) or "0000000000000000")
+    token = totp.now()
+
     headers = {
         "Content-Type": "application/json",
         "Accept": "application/json",
         "BobUniversity": args.university or "",
-        "BobToken": args.token or ""}
+        "BobToken": str(token)}
 
     uni_list_selected = []
 
@@ -96,11 +101,14 @@ def insert_occupation(
         name_cl="", name_pe="",
         name_ec="", name_br="",
         clusters=""):
+    totp = pyotp.TOTP(str(args.token) or "0000000000000000")
+    token = totp.now()
+
     headers = {
         "Content-Type": "application/json",
         "Accept": "application/json",
         "BobUniversity": args.university or "",
-        "BobToken": args.token or ""}
+        "BobToken": str(token)}
 
     uni_list_selected = []
 
@@ -178,11 +186,14 @@ def init_occupation():
 
 
 def insert_university(code, name, country):
+    totp = pyotp.TOTP(str(args.token) or "0000000000000000")
+    token = totp.now()
+
     headers = {
         "Content-Type": "application/json",
         "Accept": "application/json",
         "BobUniversity": args.university or "",
-        "BobToken": args.token or ""}
+        "BobToken": str(token)}
 
     values = {
         "code": code,
@@ -206,12 +217,33 @@ def init_uni():
     print("done.")
 
 
-def insert_country(code, name):
+def cleards():
+    print("Clearing datastore...")
+
+    totp = pyotp.TOTP(str(args.token) or "0000000000000000")
+    token = totp.now()
+
     headers = {
         "Content-Type": "application/json",
         "Accept": "application/json",
         "BobUniversity": args.university or "",
-        "BobToken": args.token or ""}
+        "BobToken": str(token)}
+
+    values = {}
+
+    url = "{0}/admin/cleards".format(apps[args.app])
+
+    requests.post(url, params=values, headers=headers)
+
+
+def insert_country(code, name):
+    totp = pyotp.TOTP(str(args.token) or "0000000000000000")
+    token = totp.now()
+    headers = {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "BobUniversity": args.university or "",
+        "BobToken": str(token)}
 
     values = {
         "code": code,
@@ -235,11 +267,14 @@ def init_country():
 
 
 def create_account():
+    totp = pyotp.TOTP(str(args.token) or "0000000000000000")
+    token = totp.now()
+
     headers = {
         "Content-Type": "application/json",
         "Accept": "application/json",
         "BobUniversity": args.university or "",
-        "BobToken": args.token or ""}
+        "BobToken": str(token)}
 
     email = "{0}@{1}.net".format(
         get_sentences(1)[0].split(" ")[0],
@@ -280,11 +315,14 @@ def create_account():
 
 
 def confirm(portfolioid, message):
+    totp = pyotp.TOTP(str(args.token) or "0000000000000000")
+    token = totp.now()
+
     headers = {
         "Content-Type": "application/json",
         "Accept": "application/json",
         "BobUniversity": args.university or "",
-        "BobToken": args.token or ""}
+        "BobToken": str(token)}
 
     reasons = []
 
@@ -315,11 +353,14 @@ def confirm(portfolioid, message):
 
 
 def completion(portfolioid):
+    totp = pyotp.TOTP(str(args.token) or "0000000000000000")
+    token = totp.now()
+
     headers = {
         "Content-Type": "application/json",
         "Accept": "application/json",
         "BobUniversity": args.university or "",
-        "BobToken": args.token or ""}
+        "BobToken": str(token)}
 
     values = completionupdate_results[random.choice([0, 1])]
 
