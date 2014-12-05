@@ -2,8 +2,8 @@
 
 import requests
 import random
-import json
 import pyotp
+# import time
 
 from loremipsum import get_sentences
 from settings import apps, universities, countries, clusters, occupations
@@ -12,9 +12,36 @@ from settings import completionupdate_results
 
 args = None
 
+MAX_REQUEST_RETRIES = 10
+
 
 def default():
     print("BOB Client v1.0")
+
+
+def send_request(url, values, headers):
+    retries = 0
+
+    response = None
+
+    while retries < MAX_REQUEST_RETRIES:
+        try:
+            totp = pyotp.TOTP(str(args.token) or "0000000000000000")
+            token = totp.now()
+
+            headers["BobToken"] = str(token)
+
+            response = requests.post(url, params=values, headers=headers)
+
+            if response.status_code == 403:
+                retries += 1
+                # time.sleep(1)
+            else:
+                break
+        except:
+            break
+
+    return response
 
 
 def insert_cluster(
@@ -22,15 +49,11 @@ def insert_cluster(
         name_es="", name_mx="",
         name_cl="", name_pe="",
         name_ec="", name_br=""):
-
-    totp = pyotp.TOTP(str(args.token) or "0000000000000000")
-    token = totp.now()
-
     headers = {
         "Content-Type": "application/json",
         "Accept": "application/json",
         "BobUniversity": args.university or "",
-        "BobToken": str(token)}
+        "BobToken": ""}
 
     uni_list_selected = []
 
@@ -73,7 +96,7 @@ def insert_cluster(
 
     url = "{0}/cluster/insert".format(apps[args.app])
 
-    requests.post(url, params=values, headers=headers)
+    send_request(url, values, headers)
 
 
 def init_cluster():
@@ -99,14 +122,11 @@ def insert_occupation(
         name_cl="", name_pe="",
         name_ec="", name_br="",
         clusters=""):
-    totp = pyotp.TOTP(str(args.token) or "0000000000000000")
-    token = totp.now()
-
     headers = {
         "Content-Type": "application/json",
         "Accept": "application/json",
         "BobUniversity": args.university or "",
-        "BobToken": str(token)}
+        "BobToken": ""}
 
     uni_list_selected = []
 
@@ -151,7 +171,7 @@ def insert_occupation(
 
     url = "{0}/occupation/insert".format(apps[args.app])
 
-    requests.post(url, params=values, headers=headers)
+    send_request(url, values, headers)
 
 
 def init_occupation():
@@ -182,14 +202,11 @@ def init_occupation():
 
 
 def insert_university(code, name, country):
-    totp = pyotp.TOTP(str(args.token) or "0000000000000000")
-    token = totp.now()
-
     headers = {
         "Content-Type": "application/json",
         "Accept": "application/json",
         "BobUniversity": args.university or "",
-        "BobToken": str(token)}
+        "BobToken": ""}
 
     values = {
         "code": code,
@@ -199,7 +216,7 @@ def insert_university(code, name, country):
 
     url = "{0}/university/insert".format(apps[args.app])
 
-    requests.post(url, params=values, headers=headers)
+    send_request(url, values, headers)
 
 
 def init_uni():
@@ -214,30 +231,25 @@ def init_uni():
 def cleards():
     print("Clearing datastore...")
 
-    totp = pyotp.TOTP(str(args.token) or "0000000000000000")
-    token = totp.now()
-
     headers = {
         "Content-Type": "application/json",
         "Accept": "application/json",
         "BobUniversity": args.university or "",
-        "BobToken": str(token)}
+        "BobToken": ""}
 
     values = {}
 
     url = "{0}/admin/cleards".format(apps[args.app])
 
-    requests.post(url, params=values, headers=headers)
+    send_request(url, values, headers)
 
 
 def insert_country(code, name):
-    totp = pyotp.TOTP(str(args.token) or "0000000000000000")
-    token = totp.now()
     headers = {
         "Content-Type": "application/json",
         "Accept": "application/json",
         "BobUniversity": args.university or "",
-        "BobToken": str(token)}
+        "BobToken": ""}
 
     values = {
         "code": code,
@@ -246,7 +258,7 @@ def insert_country(code, name):
 
     url = "{0}/country/insert".format(apps[args.app])
 
-    requests.post(url, params=values, headers=headers)
+    send_request(url, values, headers)
 
 
 def init_country():
@@ -259,14 +271,11 @@ def init_country():
 
 
 def create_account():
-    totp = pyotp.TOTP(str(args.token) or "0000000000000000")
-    token = totp.now()
-
     headers = {
         "Content-Type": "application/json",
         "Accept": "application/json",
         "BobUniversity": args.university or "",
-        "BobToken": str(token)}
+        "BobToken": ""}
 
     email = "{0}@{1}.net".format(
         get_sentences(1)[0].split(" ")[0],
@@ -295,7 +304,7 @@ def create_account():
     print("Creating account for '{0}'...".format(
         args.mail if args.mail else email))
 
-    response = requests.post(url, params=values, headers=headers)
+    response = send_request(url, values, headers)
 
     try:
         print(response.content)
@@ -305,14 +314,11 @@ def create_account():
 
 
 def confirm(portfolioid, message):
-    totp = pyotp.TOTP(str(args.token) or "0000000000000000")
-    token = totp.now()
-
     headers = {
         "Content-Type": "application/json",
         "Accept": "application/json",
         "BobUniversity": args.university or "",
-        "BobToken": str(token)}
+        "BobToken": ""}
 
     reasons = []
 
@@ -331,7 +337,7 @@ def confirm(portfolioid, message):
     print("Sending {0} confirmation for '{1}'...".format(
         message, portfolioid))
 
-    response = requests.post(url, data=json.dumps(values), headers=headers)
+    response = send_request(url, values, headers)
 
     try:
         print(response.content)
@@ -341,14 +347,11 @@ def confirm(portfolioid, message):
 
 
 def completion(portfolioid):
-    totp = pyotp.TOTP(str(args.token) or "0000000000000000")
-    token = totp.now()
-
     headers = {
         "Content-Type": "application/json",
         "Accept": "application/json",
         "BobUniversity": args.university or "",
-        "BobToken": str(token)}
+        "BobToken": ""}
 
     values = completionupdate_results[random.choice([0, 1])]
 
@@ -360,7 +363,7 @@ def completion(portfolioid):
     print("Sending completion update notification for '{0}'...".format(
         portfolioid))
 
-    response = requests.post(url, data=json.dumps(values), headers=headers)
+    response = send_request(url, values, headers)
 
     try:
         print(response.content)
