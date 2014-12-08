@@ -1,0 +1,1 @@
+C:\Users\rsalgado\Documents\Visual Studio 2012\Projects\Bob\WebAPI2BOBClient\WebAPI2BOBClient\bin\Debug\WebAPI2BOBClient.exe.config

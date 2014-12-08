@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI2BOBClient", "WebAPI2BOBClient\WebAPI2BOBClient.csproj", "{7264E8BB-C3C6-4A5D-90DF-3746C31C1C3B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OTPNet", "..\OTPNet\otpnet\OTPNet.csproj", "{F1FD321D-6F2A-4431-8307-6BF959419DBE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7264E8BB-C3C6-4A5D-90DF-3746C31C1C3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7264E8BB-C3C6-4A5D-90DF-3746C31C1C3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7264E8BB-C3C6-4A5D-90DF-3746C31C1C3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7264E8BB-C3C6-4A5D-90DF-3746C31C1C3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1FD321D-6F2A-4431-8307-6BF959419DBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1FD321D-6F2A-4431-8307-6BF959419DBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1FD321D-6F2A-4431-8307-6BF959419DBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1FD321D-6F2A-4431-8307-6BF959419DBE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
