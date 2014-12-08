@@ -357,6 +357,8 @@ def completion(portfolioid):
 
     values["PortfolioID"] = portfolioid
     values["ResultURL"] += portfolioid
+    values["MMDate"] = "22/11/2014"
+    values["TerminosCC"] = "1"
 
     url = "{0}/bob/completionupdate".format(apps[args.app])
 
