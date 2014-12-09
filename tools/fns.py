@@ -26,7 +26,7 @@ def send_request(url, values, headers):
 
     while retries < MAX_REQUEST_RETRIES:
         try:
-            totp = pyotp.TOTP(str(args.token) or "0000000000000000")
+            totp = pyotp.TOTP(str(args.token) or "0000000000000000", interval=90)
             token = totp.now()
 
             headers["BobToken"] = str(token)
@@ -35,7 +35,6 @@ def send_request(url, values, headers):
 
             if response.status_code == 403:
                 retries += 1
-                # time.sleep(1)
             else:
                 break
         except:

@@ -4,8 +4,8 @@
 
     $key = "R3A7PZLCUQIJFUGX";
 
-    $totp = new \OTPHP\TOTP($key);
+    $totp = new \OTPHP\TOTP($key, array('interval' => 90));
 
-    echo $totp->now();
+    print $totp->now() . "\n";
 
 ?>

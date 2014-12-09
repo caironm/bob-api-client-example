@@ -3,6 +3,8 @@
 
 import requests
 import argparse
+import pyotp
+
 from loremipsum import get_sentences
 
 BOB_CLIENT_VERSION = "1.0"
@@ -46,7 +48,14 @@ def default():
 def create_account(email, university="upn"):
     headers = {
         "Content-Type": "application/json",
-        "Accept": "application/json"}
+        "Accept": "application/json",
+        "BobUniversity": "upn",
+        "BobToken": ""}
+
+    t = pyotp.TOTP("R3A7PZLCUQIJFUGX", interval=90)
+    token = t.now()
+
+    headers["BobToken"] = str(token)
 
     firstname = get_sentences(1)[0].split(" ")[0]
     paternallastname = get_sentences(1)[0].split(" ")[0]
@@ -75,6 +84,7 @@ def create_account(email, university="upn"):
     try:
         print("done.")
         print("Json response:")
+
         print(response.json())
     except:
         print("Not a JSON response")

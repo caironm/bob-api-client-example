@@ -49,9 +49,9 @@ namespace WebAPI2BOBClient
                     TerminosCC = "1"
                 };
 
-                var BOB_SECRET_KEY = "0000000000000000";
+                var BOB_SECRET_KEY = "VY72IUVROA6LTYHK";
 
-                var totp = new OTPNet.TOTP(BOB_SECRET_KEY);
+                var totp = new OTPNet.TOTP(BOB_SECRET_KEY, 90);
 
                 var jsonFormatter = new JsonMediaTypeFormatter();
 
