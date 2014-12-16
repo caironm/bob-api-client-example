@@ -7,7 +7,7 @@ import fns
 from settings import apps, universities, init
 
 from fns import default, init_cluster, cleards
-from fns import init_occupation, init_uni
+from fns import init_occupation, init_uni, list_clusters
 from fns import init_country, create_account, confirm, completion
 
 parser = argparse.ArgumentParser()
@@ -56,6 +56,11 @@ parser.add_argument(
     help="Portfolio ID to be confirmed")
 
 parser.add_argument(
+    "-cs", "--clusters",
+    help="List all clusters",
+    action="store_true")
+
+parser.add_argument(
     "-r", "--reject",
     type=str,
     help="Portfolio ID to be rejected")
@@ -82,6 +87,9 @@ if __name__ == "__main__":
 
     if fns.args.cleardatastore:
         cleards()
+
+    if fns.args.clusters:
+        list_clusters()
 
     if fns.args.account:
         if fns.args.university:

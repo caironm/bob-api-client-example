@@ -43,6 +43,25 @@ def send_request(url, values, headers):
     return response
 
 
+def list_clusters():
+    print("Listing all clusters...")
+
+    headers = {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "BobUniversity": args.university or "",
+        "BobToken": ""}
+
+    values = {}
+
+    url = "{0}/cluster/cluster_list".format(apps[args.app])
+
+    response = send_request(url, values, headers)
+
+    print response
+    print(response.content)
+
+
 def insert_cluster(
         code, name,
         name_es="", name_mx="",

@@ -31,6 +31,11 @@ universities = [
         "country": "hn"
     },
     {
+        "code": "lnpsbi",
+        "name": "LNPS BI",
+        "country": "hn"
+    },
+    {
         "code": "cc",
         "name": "Slingshot",
         "country": "us"
