@@ -1,0 +1,766 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"coun",
+				"countries_list"
+			],
+			[
+				"countries",
+				"countries_list"
+			],
+			[
+				"loa",
+				"loading_message"
+			],
+			[
+				"text",
+				"text-align"
+			],
+			[
+				"bu",
+				"buttonLeft"
+			],
+			[
+				"item",
+				"items_fulllist"
+			],
+			[
+				"requ",
+				"required"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"entit",
+				"entity_new"
+			],
+			[
+				"entity",
+				"entity_uppercase"
+			],
+			[
+				"enti",
+				"entity_new"
+			],
+			[
+				"Uni",
+				"UniversityMessage"
+			],
+			[
+				"univeris",
+				"university"
+			],
+			[
+				"univer",
+				"universities"
+			],
+			[
+				"save",
+				"save-item-commit"
+			],
+			[
+				"name",
+				"name_new"
+			],
+			[
+				"core-",
+				"core-icon-button"
+			],
+			[
+				"dlg",
+				"dlgConfirm"
+			],
+			[
+				"bob-coun",
+				"bob-country-edit"
+			],
+			[
+				"count",
+				"country_list"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"bob-",
+				"bob-country-list"
+			],
+			[
+				"Univer",
+				"UniverisityMessage"
+			],
+			[
+				"mess",
+				"messages_list"
+			],
+			[
+				"messa",
+				"messages_all"
+			],
+			[
+				"BobMe",
+				"BobMessageList"
+			],
+			[
+				"proto",
+				"protorpc"
+			],
+			[
+				"model",
+				"model_message"
+			],
+			[
+				"paper-",
+				"paper-input-decorator"
+			],
+			[
+				"KI",
+				"KIND_SERVICE"
+			],
+			[
+				"KID",
+				"KIND_SERVICE"
+			],
+			[
+				"uni",
+				"university_code"
+			],
+			[
+				"veri",
+				"verify_token"
+			],
+			[
+				"Port",
+				"PortfolioID"
+			],
+			[
+				"R",
+				"ResultURL"
+			],
+			[
+				"Clus",
+				"Cluster1"
+			],
+			[
+				"Completio",
+				"CompletionUpdate"
+			],
+			[
+				"Clu",
+				"Cluster2"
+			],
+			[
+				"mail",
+				"mail_target	statement"
+			],
+			[
+				"Completion",
+				"CompletitionUpdateMessage"
+			],
+			[
+				"Re",
+				"Reason	statement"
+			],
+			[
+				"completition",
+				"completitionupdate"
+			],
+			[
+				"get",
+				"get_sentences	import"
+			],
+			[
+				"u",
+				"universityuser	statement"
+			],
+			[
+				"mes",
+				"messages_received_children	statement"
+			],
+			[
+				"Occupa",
+				"Occupations"
+			],
+			[
+				"clus",
+				"clusters_list	function"
+			],
+			[
+				"cluste",
+				"clusters_list"
+			],
+			[
+				"occu",
+				"occupation	statement"
+			],
+			[
+				"Cl",
+				"Cluster	class"
+			],
+			[
+				"univeri",
+				"universities	statement"
+			],
+			[
+				"univ",
+				"universities"
+			],
+			[
+				"Univeris",
+				"Universities"
+			],
+			[
+				"countr",
+				"countries_list	statement"
+			],
+			[
+				"col",
+				"COL_NAME_BR	statement"
+			],
+			[
+				"COL",
+				"COL_NAME_MX	statement"
+			],
+			[
+				"csv",
+				"csvfile	statement"
+			],
+			[
+				"load",
+				"load_occupations	function"
+			],
+			[
+				"university",
+				"universityuser	statement"
+			],
+			[
+				"isdup",
+				"isduplicate"
+			],
+			[
+				"msg",
+				"msg_request	statement"
+			],
+			[
+				"url",
+				"url_cc	statement"
+			],
+			[
+				"ent",
+				"ent_university	statement"
+			],
+			[
+				"universi",
+				"university	param"
+			],
+			[
+				"email",
+				"emailaddress	statement"
+			],
+			[
+				"targ",
+				"target_university	statement"
+			],
+			[
+				"Aptitudes1C",
+				"Aptitudes1Cluster1"
+			],
+			[
+				"Ocupaciones1Cl",
+				"Ocupaciones1Cluster1"
+			],
+			[
+				"cc",
+				"cc_university	statement"
+			],
+			[
+				"qry",
+				"qry_universityuser	statement"
+			],
+			[
+				"qr",
+				"qry_cluster1"
+			],
+			[
+				"P",
+				"PortfolioID"
+			],
+			[
+				"noti",
+				"notification_message	statement"
+			],
+			[
+				"stock",
+				"stockquote"
+			],
+			[
+				"Stc",
+				"StockQuote	class"
+			],
+			[
+				"create",
+				"create_account	function"
+			],
+			[
+				"pas",
+				"password	statement"
+			],
+			[
+				"init",
+				"init_university	function"
+			],
+			[
+				"insert",
+				"insert_university	function"
+			],
+			[
+				"name_",
+				"name_es	param"
+			],
+			[
+				"Opt",
+				"OptionParser	class"
+			],
+			[
+				"U",
+				"University"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 54.0,
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"pa",
+				"Package Control: Remove Package"
+			],
+			[
+				"packa",
+				"Package Control: Install Package"
+			],
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 139.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by) "
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/ricardo/dev/api-client/examples/NET/WebAPI2BOBClient",
+		"/home/ricardo/dev/api-client/examples/NET/WebAPI2BOBClient/WebAPI2BOBClient",
+		"/home/ricardo/dev/api-client/examples/NET/WebAPI2BOBClient/WebAPI2BOBClient/Models"
+	],
+	"file_history":
+	[
+		"/home/ricardo/dev/api-client/examples/NET/WebAPI2BOBClient/WebAPI2BOBClient/Program.cs",
+		"/home/ricardo/dev/api-client/examples/NET/WebAPI2BOBClient/WebAPI2BOBClient/WebAPI2BOBClient.csproj",
+		"/home/ricardo/dev/api-client/examples/NET/WebAPI2BOBClient/webapi2bobclient-mono.sublime-project",
+		"/home/ricardo/dev/liu-bob-api/app/ui/static/elements/gapi-entities-service.html",
+		"/home/ricardo/dev/liu-bob-api/app/ui/ui-service.py",
+		"/home/ricardo/dev/liu-bob-api/app/ui/static/index.html",
+		"/home/ricardo/dev/liu-bob-api/app/ui/static/app.js",
+		"/home/ricardo/dev/liu-bob-api/app/ui/static/elements/bob-entity-list.html",
+		"/home/ricardo/dev/liu-bob-api/app/ui/static/elements/bob-entity.html",
+		"/home/ricardo/dev/liu-bob-api/app/ui/static/elements/gapi-crud-service.html",
+		"/home/ricardo/dev/liu-bob-api/app/ui-endpoint.yaml",
+		"/home/ricardo/dev/liu-bob-api/app/bob-endpoint.yaml",
+		"/home/ricardo/dev/liu-bob-api/app/default-endpoint.yaml",
+		"/home/ricardo/dev/polymer-gmail/index.html",
+		"/home/ricardo/dev/liu-bob-api/app/bob/bob_service.py",
+		"/home/ricardo/dev/liu-bob-api/app/bob/utils.py",
+		"/home/ricardo/dev/liu-bob-api/app/ui/static/elements/entities-service.html",
+		"/home/ricardo/dev/liu-bob-api/app/ui/ui/index.html",
+		"/home/ricardo/dev/liu-bob-api/app/ui/static/elements/crud-service.html",
+		"/home/ricardo/dev/api-client/examples/php/upn-example.php",
+		"/home/ricardo/dev/api-client/examples/php/client-example.php",
+		"/home/ricardo/dev/api-client/tools/settings.py",
+		"/home/ricardo/dev/liu-bob-api/app/ui/ui-handler.py",
+		"/home/ricardo/dev/liu-bob-api/app/bob/bob_handler.py",
+		"/home/ricardo/dev/liu-bob-api/app.yaml",
+		"/home/ricardo/dev/liu-bob-api/endpoints_config.py",
+		"/home/ricardo/dev/liu-bob-api/app/bob/ui/index.html",
+		"/home/ricardo/dev/liu-bob-api/app/ui/__init__.py",
+		"/home/ricardo/dev/liu-bob-api/app/bob/static/elements/entities-service.html",
+		"/home/ricardo/dev/liu-bob-api/app/bob/static/elements/bob-entity.html",
+		"/home/ricardo/dev/liu-bob-api/app/bob/models.py",
+		"/home/ricardo/dev/api-client/tools/fns.py",
+		"/home/ricardo/dev/liu-bob-api/app/bob/static/index.html",
+		"/home/ricardo/dev/liu-bob-api/app/bob/static/elements/bob-entity-list.html",
+		"/home/ricardo/dev/api-client/tools/bob.py",
+		"/home/ricardo/dev/liu-bob-api/app/bob/static/elements/bob-university.html",
+		"/home/ricardo/dev/liu-bob-api/app/bob/static/elements/bob-country-list.html",
+		"/home/ricardo/dev/liu-bob-api/app/bob/static/elements/bob-country.html",
+		"/home/ricardo/dev/liu-bob-api/app/bob/static/elements/crud-service.html",
+		"/home/ricardo/dev/liu-bob-api/app/bob/university_service.html",
+		"/home/ricardo/dev/liu-bob-api/app/bob/static/base.css",
+		"/home/ricardo/dev/liu-bob-api/app/bob/static/elements/bob-university-list.html",
+		"/home/ricardo/dev/liu-bob-api/app/bob/static/elements/bob-occupation.html",
+		"/home/ricardo/dev/liu-bob-api/app/bob/static/elements/bob-occupation-list.html",
+		"/home/ricardo/dev/liu-bob-api/app/bob/static/elements/bob-cluster-list.html",
+		"/home/ricardo/dev/liu-bob-api/app/bob/static/elements/country-service.html",
+		"/home/ricardo/dev/liu-bob-api/app/bob/static/elements/bob-cluster.html",
+		"/home/ricardo/dev/liu-bob-api/app/bob/static/elements/bob-country-edit.html",
+		"/home/ricardo/dev/liu-bob-api/app/bob/static/elements/entities-put-service.html",
+		"/home/ricardo/dev/liu-bob-api/app/bob/static/elements/untitled",
+		"/home/ricardo/.zprezto/modules/prompt/functions/prompt_smiley_setup",
+		"/home/ricardo/.zpreztorc",
+		"/home/ricardo/.zshenv",
+		"/home/ricardo/.bashrc",
+		"/home/ricardo/.config/fish/config.fish",
+		"/home/ricardo/fsh/powerline-shell/config.py",
+		"/home/ricardo/prompt_paradox_setup",
+		"/home/ricardo/.zshrc",
+		"/home/ricardo/dev/polymer-tutorial-master/starter/post-card.html",
+		"/home/ricardo/dev/polymer-tutorial-master/post-service/post-service.html",
+		"/home/ricardo/.zprezto/modules/prompt/init.zsh",
+		"/home/ricardo/dev/liu-bob-api/app/bob/static/elements/countries-service.html",
+		"/home/ricardo/dev/liu-bob-api/app/bob/static/elements/service-countries.html",
+		"/home/ricardo/dev/liu-bob-api/app/bob/static/elements/bob-service-countries.html",
+		"/home/ricardo/dev/liu-bob-api/app/bob/static/elements/bob-message-list.html",
+		"/home/ricardo/dev/liu-bob-api/app/bob/static/elements/bob-message.html",
+		"/home/ricardo/dev/liu-bob-api/app/bob/static/elements/bob-service-messages.html",
+		"/home/ricardo/dev/liu-bob-api/app/bob/static/elements/bob-login.html",
+		"/home/ricardo/dev/liu-bob-api/app/bob/static/elements/bob-menu.html",
+		"/home/ricardo/dev/liu-bob-api/app/bob/static/elements/login.html",
+		"/home/ricardo/dev/liu-bob-api/app/bob/templates/landing.html",
+		"/home/ricardo/dev/liu-bob-api/app/bob/ui/elements/bob-message.html",
+		"/home/ricardo/dev/bob-polymer/elements/bob-message.html",
+		"/home/ricardo/dev/bob-polymer/index.html",
+		"/home/ricardo/dev/polymer-tutorial-master/starter/index.html",
+		"/home/ricardo/dev/liu-bob-api/app/fe-endpoint.yaml",
+		"/home/ricardo/dev/bob-polymer/bower.json",
+		"/home/ricardo/dev/api-client/examples/php/totp_client.php",
+		"/home/ricardo/dev/api-client/examples/ruby/totp_client.rb",
+		"/home/ricardo/dev/api-client/examples/python/client-example.py",
+		"/home/ricardo/dev/api-client/examples/python/requirements.txt",
+		"/home/ricardo/dev/api-client/tools/tokens.py",
+		"/home/ricardo/dev/liu-bob-api/app/bob/templates/resultados.html",
+		"/home/ricardo/dev/bob-polymer/bob-message.html",
+		"/home/ricardo/dev/polymer-tutorial-master/starter/post-list.html",
+		"/home/ricardo/.config/sublime-text-3/Packages/User/Package Control.sublime-settings",
+		"/home/ricardo/.config/sublime-text-3/Packages/Package Control/Package Control.sublime-settings",
+		"/home/ricardo/dev/api-client/.gitignore",
+		"/home/ricardo/dev/api-client/tools/upn-test.py",
+		"/home/ricardo/.virtualenvs/ferris/lib/python2.7/site-packages/ferrisnose/plugin.py",
+		"/home/ricardo/dev/liu-bob-api/app/tests/TestBobService.py",
+		"/home/ricardo/dev/liu-bob-api/circle.yml",
+		"/home/ricardo/dev/liu-bob-api/requirements.txt",
+		"/home/ricardo/google-cloud-sdk/platform/google_appengine/lib/endpoints-1.0/endpoints/apiserving.py",
+		"/home/ricardo/dev/liu-bob-api/main.py",
+		"/home/ricardo/dev/api-client/totp_client.rb",
+		"/home/ricardo/dev/liu-bob-api/app/tests/TestBobHandler.py",
+		"/home/ricardo/dev/api-client/settings.py",
+		"/home/ricardo/dev/api-client/fns.py",
+		"/home/ricardo/dev/api-client/bob.py",
+		"/home/ricardo/dev/api-client/totp_client.php",
+		"/home/ricardo/.config/sublime-text-3/Packages/Python Flake8 Lint/Flake8Lint.sublime-settings",
+		"/home/ricardo/dev/liu-bob-api/app/bob/templates/clusters_list.html",
+		"/home/ricardo/dev/liu-bob-api/app/bob/templates/unauthorized.html",
+		"/home/ricardo/dev/liu-bob-api/app/bob/templates/occupations_list.html",
+		"/home/ricardo/dev/liu-bob-api/app/bob/templates/users_list.html",
+		"/home/ricardo/dev/4ng-bob/angular-phonecat/app/index.html",
+		"/home/ricardo/dev/liu-bob-api/app/basic/__init__.py",
+		"/home/ricardo/dev/api-client/utils.py",
+		"/home/ricardo/dev/liu-bob-api/app/bob/templates/messages_by_user.html",
+		"/home/ricardo/dev/api-client/upn-test.py",
+		"/home/ricardo/.config/sublime-text-3/Packages/Anaconda/Anaconda.sublime-settings",
+		"/home/ricardo/.config/sublime-text-3/Packages/User/Anaconda.sublime-settings",
+		"/home/ricardo/.config/sublime-text-3/Packages/User/SublimeLinter.sublime-settings",
+		"/home/ricardo/wsdl-dict.json",
+		"/home/ricardo/.config/sublime-text-3/Packages/User/ipdb.sublime-snippet",
+		"/home/ricardo/dev/liu-bob-api/app/bob/templates/messages_list.html",
+		"/home/ricardo/dev/liu-bob-api/app/tests/TestUniversityUser.py",
+		"/home/ricardo/dev/liu-bob-api/app/tests/TestMessage.py",
+		"/home/ricardo/dev/liu-bob-api/app/tests/TestCountry.py",
+		"/home/ricardo/dev/liu-bob-api/app/tests/TestUniversity.py",
+		"/home/ricardo/dev/liu-bob-api/app/tests/TestCluster.py",
+		"/home/ricardo/dev/liu-bob-api/app/tests/TestOccupation.py",
+		"/home/ricardo/dev/liu-bob-api/app/tests/TestTestFlag.py",
+		"/home/ricardo/dev/liu-bob-api/app/tests/__init__.py",
+		"/home/ricardo/dev/liu-bob-api/app/bob/templates/createaccount_email.html",
+		"/home/ricardo/dev/liu-bob-api/app/settings.py",
+		"/home/ricardo/dev/bob-api-client/settings.py"
+	],
+	"find":
+	{
+		"height": 22.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			"/home/ricardo/dev/liu-bob-api/app/bob/static/elements",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"console",
+			"http",
+			"action",
+			"gapi.client.bob",
+			"this.gapi",
+			"template",
+			"ready",
+			"this.gapi",
+			"gapi",
+			"google",
+			"onSigninSuccess",
+			"service",
+			"endpoint",
+			"upper",
+			"order",
+			"sort",
+			"show",
+			"hidden",
+			"messages_list",
+			"/ui/",
+			"bower_components/",
+			"ui/",
+			"bower_components",
+			"El campo ResultURL es requerido",
+			"../../components/",
+			".name",
+			".get",
+			"Confirmation",
+			".now()",
+			"str(token)",
+			"done",
+			"strip",
+			"pyotp.TOTP(args.token",
+			": token",
+			"token or \"\"",
+			"@totp_enabled(private=True)",
+			"@totp_enabled(private=False)",
+			"headers = ",
+			"totp",
+			"verify_totp_token",
+			",",
+			"=",
+			" :",
+			"=",
+			"pep8",
+			"long",
+			"line",
+			"\"CC ",
+			"CC ",
+			"CC Err",
+			"xmlns",
+			"namespace",
+			"ns",
+			"ns0",
+			"(",
+			"\"\"",
+			",",
+			" = ",
+			"ip_address",
+			"TextProperty",
+			"ip_",
+			"ip_address",
+			"self.request",
+			"fault",
+			"apps",
+			"ProtoNotificactionMessage",
+			"NotificationMessage",
+			"messages.StringField",
+			"done",
+			"https://github.com/jdc0589/CaseConversion",
+			"ca.",
+			"()",
+			"put()",
+			"product",
+			"docs",
+			"product_key",
+			"username",
+			",)",
+			"ndb.StringProperty()",
+			"- "
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"bob",
+			"gapi",
+			"/static/",
+			"app/bob/ui/",
+			"/ui/bower_components/",
+			"/ui/",
+			"ui/bower_components",
+			"bower_components/",
+			"",
+			"\"\"",
+			"pyotp.TOTP(str(args.token)",
+			": str(token)",
+			"str(token) or \"\"",
+			"@totp_enabled(True)",
+			"@totp_enabled(False)",
+			"",
+			" = ",
+			":",
+			" \" \"",
+			" or \"\",",
+			"=",
+			"ndb.KeyProperty",
+			"fm.",
+			"(required=False)",
+			", '')",
+			"ndb.KeyProperty(kind=\"Cluster\")",
+			"    "
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": false
+	},
+	"folders":
+	[
+		{
+			"follow_symlinks": true,
+			"path": "/home/ricardo/dev/api-client/examples/NET/WebAPI2BOBClient"
+		}
+	],
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 21.0
+	},
+	"input":
+	{
+		"height": 29.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 88.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.variable_get":
+	{
+		"height": 88.0
+	},
+	"project": "",
+	"replace":
+	{
+		"height": 40.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 313.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

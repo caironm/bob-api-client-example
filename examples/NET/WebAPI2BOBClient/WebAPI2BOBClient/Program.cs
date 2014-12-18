@@ -3,7 +3,6 @@ using System.Net.Http;
 using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
-using System.Collections.Generic;
 using WebAPI2BOBClient.Models;
 using Newtonsoft.Json;
 
@@ -13,13 +12,13 @@ namespace WebAPI2BOBClient
     {
         static void Main(string[] args)
         {
-            var portfolio = "";
+            string portfolio;
 
             if (args.Length == 1)
             {
                 portfolio = args[0];
             }
-            else 
+            else
             {
                 var rnd = new Random();
 
@@ -27,6 +26,10 @@ namespace WebAPI2BOBClient
             }
 
             Console.WriteLine("Updating Portfolio ID: {0}...", portfolio);
+
+            // Fix para mono
+            System.Net.ServicePointManager.ServerCertificateValidationCallback =
+                new System.Net.Security.RemoteCertificateValidationCallback(delegate { return true; });
 
             RunAsync(portfolio).Wait();
         }
@@ -38,7 +41,7 @@ namespace WebAPI2BOBClient
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                var account = new CompletionUpdateModel()
+                var account = new CompletionUpdateModel
                 {
                     PortfolioID = portfolio,
                     MMDate = "2013/10/15",
@@ -58,11 +61,10 @@ namespace WebAPI2BOBClient
                 var content = new ObjectContent<CompletionUpdateModel>(account, jsonFormatter);
 
                 var url = "https://1-dot-dazzling-rex-760.appspot.com/_ah/api/bob/v1/bob/completionupdate";
-                // var url = "http://192.168.1.103:8080/_ah/api/bob/v1/bob/completionupdate";
 
                 var requestUri = new Uri(url);
 
-                var request = new HttpRequestMessage()
+                var request = new HttpRequestMessage
                 {
                     RequestUri = requestUri,
                     Method = HttpMethod.Post,
@@ -78,7 +80,7 @@ namespace WebAPI2BOBClient
 
                 var response = client.SendAsync(request).Result;
 
-                Console.WriteLine("HTTP status code: {0}", response.StatusCode.ToString());
+                Console.WriteLine("HTTP status code: {0}", response.StatusCode);
 
                 if (response.IsSuccessStatusCode)
                 {

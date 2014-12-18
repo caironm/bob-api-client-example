@@ -1,0 +1,5 @@
+/home/ricardo/dev/api-client/examples/NET/OTPNet/otpnet/obj/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/ricardo/dev/api-client/examples/NET/OTPNet/otpnet/bin/Debug/OTPNet.dll.mdb
+/home/ricardo/dev/api-client/examples/NET/OTPNet/otpnet/bin/Debug/OTPNet.dll
+/home/ricardo/dev/api-client/examples/NET/OTPNet/otpnet/obj/Debug/OTPNet.dll
+/home/ricardo/dev/api-client/examples/NET/OTPNet/otpnet/obj/Debug/OTPNet.dll.mdb

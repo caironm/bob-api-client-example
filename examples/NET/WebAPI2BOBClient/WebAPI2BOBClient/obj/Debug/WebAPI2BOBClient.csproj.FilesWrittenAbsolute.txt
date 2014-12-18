@@ -1,0 +1,10 @@
+/home/ricardo/dev/api-client/examples/NET/WebAPI2BOBClient/WebAPI2BOBClient/obj/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/ricardo/dev/api-client/examples/NET/WebAPI2BOBClient/WebAPI2BOBClient/bin/Debug/WebAPI2BOBClient.exe.config
+/home/ricardo/dev/api-client/examples/NET/WebAPI2BOBClient/WebAPI2BOBClient/bin/Debug/WebAPI2BOBClient.exe.mdb
+/home/ricardo/dev/api-client/examples/NET/WebAPI2BOBClient/WebAPI2BOBClient/bin/Debug/WebAPI2BOBClient.exe
+/home/ricardo/dev/api-client/examples/NET/WebAPI2BOBClient/WebAPI2BOBClient/bin/Debug/Newtonsoft.Json.dll
+/home/ricardo/dev/api-client/examples/NET/WebAPI2BOBClient/WebAPI2BOBClient/bin/Debug/System.Net.Http.Formatting.dll
+/home/ricardo/dev/api-client/examples/NET/WebAPI2BOBClient/WebAPI2BOBClient/bin/Debug/OTPNet.dll
+/home/ricardo/dev/api-client/examples/NET/WebAPI2BOBClient/WebAPI2BOBClient/bin/Debug/OTPNet.dll.mdb
+/home/ricardo/dev/api-client/examples/NET/WebAPI2BOBClient/WebAPI2BOBClient/obj/Debug/WebAPI2BOBClient.exe
+/home/ricardo/dev/api-client/examples/NET/WebAPI2BOBClient/WebAPI2BOBClient/obj/Debug/WebAPI2BOBClient.exe.mdb
