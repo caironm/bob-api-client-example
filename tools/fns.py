@@ -219,7 +219,7 @@ def init_occupation():
         )
 
 
-def insert_university(code, name, country):
+def insert_university(code, name, country, secret):
     headers = {
         "Content-Type": "application/json",
         "Accept": "application/json",
@@ -229,7 +229,8 @@ def insert_university(code, name, country):
     values = {
         "code": code,
         "name": name,
-        "country": country
+        "country": country,
+        "secret": secret
     }
 
     url = "{0}/university/insert".format(apps[args.app])
@@ -243,7 +244,9 @@ def init_uni():
     for university in universities:
         insert_university(
             code=university["code"],
-            name=university["name"], country=university["country"])
+            name=university["name"],
+            country=university["country"],
+            secret=university["secret"])
 
 
 def cleards():

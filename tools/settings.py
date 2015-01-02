@@ -28,37 +28,44 @@ universities = [
     {
         "code": "bob",
         "name": "Bob Service",
-        "country": "hn"
+        "country": "hn",
+        "secret": "DPM5ATFPXV43SH65"
     },
     {
         "code": "lnpsbi",
         "name": "LNPS BI",
-        "country": "hn"
+        "country": "hn",
+        "secret": "5PJAK6PJXYEB2ACL"
     },
     {
         "code": "cc",
         "name": "Slingshot",
-        "country": "us"
+        "country": "us",
+        "secret": "VY72IUVROA6LTYHK"
     },
     {
         "code": "unitec",
         "name": "Universidad Tecnológica Centroamericana",
-        "country": "hn"
+        "country": "hn",
+        "secret": "BB6QZARKDZ4WRGVM"
     },
     {
         "code": "ceutec",
         "name": "Centro Universitario Tecnológico",
-        "country": "hn"
+        "country": "hn",
+        "secret": "IRUOAPYARXATP6KO"
     },
     {
         "code": "upn",
         "name": "Universidad Privada del Norte",
-        "country": "pe"
+        "country": "pe",
+        "secret": "R3A7PZLCUQIJFUGX"
     },
     {
         "code": "cbs",
         "name": "CEDEPE Business School",
-        "country": "br"
+        "country": "br",
+        "secret": "37DOKPKC46QHEP45"
     },
 ]
 
