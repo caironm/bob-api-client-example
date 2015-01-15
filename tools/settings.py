@@ -29,43 +29,50 @@ universities = [
         "code": "bob",
         "name": "Bob Service",
         "country": "hn",
-        "secret": "DPM5ATFPXV43SH65"
+        "secret": "DPM5ATFPXV43SH65",
+        "support_contact": "ricr.sb@gmail.com"
     },
     {
         "code": "lnpsbi",
         "name": "LNPS BI",
         "country": "hn",
-        "secret": "5PJAK6PJXYEB2ACL"
+        "secret": "5PJAK6PJXYEB2ACL",
+        "support_contact": "ricr.sb@gmail.com"
     },
     {
         "code": "cc",
         "name": "Slingshot",
         "country": "us",
-        "secret": "VY72IUVROA6LTYHK"
+        "secret": "VY72IUVROA6LTYHK",
+        "support_contact": "ricr.sb@gmail.com"
     },
     {
         "code": "unitec",
         "name": "Universidad Tecnológica Centroamericana",
         "country": "hn",
-        "secret": "BB6QZARKDZ4WRGVM"
+        "secret": "BB6QZARKDZ4WRGVM",
+        "support_contact": "ricr.sb@gmail.com"
     },
     {
         "code": "ceutec",
         "name": "Centro Universitario Tecnológico",
         "country": "hn",
-        "secret": "IRUOAPYARXATP6KO"
+        "secret": "IRUOAPYARXATP6KO",
+        "support_contact": "ricr.sb@gmail.com"
     },
     {
         "code": "upn",
         "name": "Universidad Privada del Norte",
         "country": "pe",
-        "secret": "R3A7PZLCUQIJFUGX"
+        "secret": "R3A7PZLCUQIJFUGX",
+        "support_contact": "ricr.sb@gmail.com"
     },
     {
         "code": "cbs",
         "name": "CEDEPE Business School",
         "country": "br",
-        "secret": "37DOKPKC46QHEP45"
+        "secret": "37DOKPKC46QHEP45",
+        "support_contact": "ricr.sb@gmail.com"
     },
 ]
 
