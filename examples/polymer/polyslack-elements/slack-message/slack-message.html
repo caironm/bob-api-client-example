@@ -1,0 +1,64 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/core-image/core-image.html">
+<link rel="import" href="../../bower_components/core-ajax/core-ajax.html">
+
+<polymer-element name="slack-message" attributes="token ts text user" name>
+  <template>
+    <link rel="stylesheet" href="slack-message.css">
+
+    <core-ajax
+      id="service"
+      hidden
+      url="https://slack.com/api/users.info"
+      handleAs="json"
+      method="GET"
+      on-core-response="{{handleResponse}}"
+      params='{"token": "{{token}}", "user": "{{user}}"}'>
+    </core-ajax>
+
+    <div class="container">
+      <div horizontal layout center class="header" on-tap="{{toggleCollapse}}">
+        <div>
+          <core-image class="sized" sizing="cover" src="{{pic}}" style="width: 32px; height: 32px;"></core-image>
+        </div>
+        <div flex class="username">{{name}}</div>
+        <div class="ts">{{timestamp}}</div>
+      </div>
+      <div>
+        <div class="text">
+          {{text}}
+        </div>
+      </div>
+    </div>
+  </template>
+  <script>
+    (function () {
+      Polymer({
+        timestamp: '',
+        ts: '',
+        name: '',
+        text: '',
+        pic: '',
+        user: '',
+
+        handleResponse: function(e) {
+          if (e.detail.response.ok) {
+            this.name = e.detail.response.user.real_name;
+            this.pic = e.detail.response.user.profile.image_32;
+          }
+        },
+
+        tsChanged: function(oldValue, newValue) {
+          t = new Date(this.ts * 1000);
+
+          this.timestamp = t.toUTCString();
+        },
+
+        userChanged: function(oldValue, neValue) {
+          this.$.service.go();
+        },
+      });
+
+    })();
+  </script>
+</polymer-element>

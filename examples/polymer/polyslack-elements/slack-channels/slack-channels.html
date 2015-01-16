@@ -1,0 +1,32 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/core-ajax/core-ajax.html">
+
+<polymer-element name="slack-channels" attributes="token channels">
+  <template>
+    <link rel="stylesheet" href="slack-channels.css">
+
+    <core-ajax
+      auto
+      hidden
+      url="https://slack.com/api/channels.list"
+      handleAs="json"
+      method="GET"
+      on-core-response="{{handleResponse}}"
+      params='{"token": "{{token}}"}'>
+    </core-ajax>
+  </template>
+  <script>
+    (function () {
+      channels: [],
+
+      Polymer({
+        handleResponse: function(e) {
+          if (e.detail.response.ok) {
+            this.channels = e.detail.response.channels;
+          }
+        }
+      });
+
+    })();
+  </script>
+</polymer-element>

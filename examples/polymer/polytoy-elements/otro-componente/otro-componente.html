@@ -1,0 +1,20 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<polymer-element name="otro-componente" attributes="">
+  <template>
+    <link rel="stylesheet" href="otro-componente.css">
+
+    <h3>Greeting: {{greeting_externa}}</h3>
+  </template>
+  <script>
+    (function () {
+      Polymer({
+        greeting_externa: '',
+
+        setGreeting: function(value) {
+          this.greeting_externa = value;
+        }
+      });
+    })();
+  </script>
+</polymer-element>

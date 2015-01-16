@@ -1,0 +1,63 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../elements/slack-message/slack-message.html">
+<link rel="import" href="../../bower_components/core-toolbar/core-toolbar.html">
+<link rel="import" href="../../bower_components/core-ajax/core-ajax.html">
+<link rel="import" href="../../bower_components/core-icon-button/core-icon-button.html">
+
+<polymer-element name="slack-message-list" attributes="token channel channel_name">
+  <template>
+    <link rel="stylesheet" href="slack-message-list.css">
+
+    <core-ajax
+      auto
+      hidden
+      id="service"
+      url="https://slack.com/api/channels.history"
+      handleAs="json"
+      method="GET"
+      on-core-response="{{handleResponse}}"
+      params='{"token": "{{token}}", "channel": "{{channel}}"}'>
+    </core-ajax>
+
+    <core-toolbar>
+      <div horizontal layout center fit>
+        <div flex>{{channel_name}}</div>
+        <div>
+          <core-icon-button icon="refresh" on-tap="{{refresh}}"></core-icon-button>
+        </div>
+      </div>
+    </core-toolbar>
+    <div>
+      <template repeat="{{message in messages}}">
+        <template if="{{message.user != ''}}">
+          <slack-message
+            ts="{{message.ts}}"
+            text="{{message.text}}"
+            user="{{message.user}}"
+            token="{{token}}"
+            >
+          </slack-message>
+        </template>
+      </template>
+    </div>
+  </template>
+  <script>
+    (function () {
+
+      Polymer({
+        messages: [],
+
+        handleResponse: function(e) {
+          if (e.detail.response.ok) {
+            this.messages = e.detail.response.messages;
+          }
+        },
+
+        refresh: function() {
+          this.$.service.go();
+        }
+      });
+
+    })();
+  </script>
+</polymer-element>
