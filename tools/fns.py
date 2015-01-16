@@ -3,7 +3,6 @@
 import requests
 import random
 import pyotp
-# import time
 
 from loremipsum import get_sentences
 from settings import apps, universities, countries, clusters, occupations
