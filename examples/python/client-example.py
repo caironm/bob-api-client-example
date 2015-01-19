@@ -11,7 +11,7 @@ BOB_CLIENT_VERSION = "1.0"
 BOB_CLIENT_NAME = "Bob Client Example"
 
 apps = {
-    "dev": "https://3-dot-api-dot-dazzling-rex-760.appspot.com/_ah/api/bob/v3",
+    "dev": "https://1-dot-dazzling-rex-760.appspot.com/_ah/api/bob/v1",
 }
 
 universities = {
