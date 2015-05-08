@@ -3,10 +3,12 @@
 import requests
 import random
 import pyotp
+import traceback
+import sys
 
 from loremipsum import get_sentences
 from settings import apps, universities, countries, clusters, occupations
-from settings import completionupdate_results
+from settings import completionupdate_results, universities_dict
 
 
 args = None
@@ -18,26 +20,42 @@ def default():
     print("BOB Client v1.0")
 
 
-def send_request(url, values, headers):
+def send_request(url, values):
     retries = 0
 
     response = None
 
+    print('about to send request...')
+
     while retries < MAX_REQUEST_RETRIES:
         try:
-            totp = pyotp.TOTP(str(args.token) or "0000000000000000", interval=90)
+            uni_token = universities_dict[args.university]["secret"]
+
+            totp = pyotp.TOTP(uni_token, interval=90)
             token = totp.now()
 
+            headers = {
+                "Content-Type": "application/json",
+                "Accept": "application/json"}
+
             headers["BobToken"] = str(token)
+            headers["BobKey"] = universities_dict[args.university]["key"]
+            headers["BobUniversity"] = args.university or ""
 
             response = requests.post(url, params=values, headers=headers)
+
+            print(url)
 
             if response.status_code == 403:
                 retries += 1
             else:
                 break
         except:
-            break
+            exc_type, exc_value, exc_traceback = sys.exc_info()
+            formatted_exception = traceback.format_exception(
+                exc_type, exc_value, exc_traceback)
+
+            print(formatted_exception)
 
     return response
 
@@ -45,17 +63,11 @@ def send_request(url, values, headers):
 def list_clusters():
     print("Listing all clusters...")
 
-    headers = {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-        "BobUniversity": args.university or "",
-        "BobToken": ""}
-
     values = {}
 
     url = "{0}/cluster/cluster_list".format(apps[args.app])
 
-    response = send_request(url, values, headers)
+    response = send_request(url, values)
 
     print response
     print(response.content)
@@ -66,12 +78,6 @@ def insert_cluster(
         name_es="", name_mx="",
         name_cl="", name_pe="",
         name_ec="", name_br=""):
-    headers = {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-        "BobUniversity": args.university or "",
-        "BobToken": ""}
-
     uni_list_selected = []
 
     if len(name_mx.strip()) > 0:
@@ -113,7 +119,7 @@ def insert_cluster(
 
     url = "{0}/cluster/insert".format(apps[args.app])
 
-    send_request(url, values, headers)
+    send_request(url, values)
 
 
 def init_cluster():
@@ -139,12 +145,6 @@ def insert_occupation(
         name_cl="", name_pe="",
         name_ec="", name_br="",
         clusters=""):
-    headers = {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-        "BobUniversity": args.university or "",
-        "BobToken": ""}
-
     uni_list_selected = []
 
     if len(name_mx.strip()) > 0:
@@ -188,7 +188,7 @@ def insert_occupation(
 
     url = "{0}/occupation/insert".format(apps[args.app])
 
-    send_request(url, values, headers)
+    send_request(url, values)
 
 
 def init_occupation():
@@ -219,12 +219,6 @@ def init_occupation():
 
 
 def insert_university(code, name, country, secret, support_contact):
-    headers = {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-        "BobUniversity": args.university or "",
-        "BobToken": ""}
-
     values = {
         "code": code,
         "name": name,
@@ -235,7 +229,7 @@ def insert_university(code, name, country, secret, support_contact):
 
     url = "{0}/university/insert".format(apps[args.app])
 
-    send_request(url, values, headers)
+    send_request(url, values)
 
 
 def init_uni():
@@ -253,26 +247,14 @@ def init_uni():
 def cleards():
     print("Clearing datastore...")
 
-    headers = {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-        "BobUniversity": args.university or "",
-        "BobToken": ""}
-
     values = {}
 
     url = "{0}/admin/cleards".format(apps[args.app])
 
-    send_request(url, values, headers)
+    send_request(url, values)
 
 
 def insert_country(code, name):
-    headers = {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-        "BobUniversity": args.university or "",
-        "BobToken": ""}
-
     values = {
         "code": code,
         "name": name
@@ -280,7 +262,7 @@ def insert_country(code, name):
 
     url = "{0}/country/insert".format(apps[args.app])
 
-    send_request(url, values, headers)
+    send_request(url, values)
 
 
 def init_country():
@@ -293,12 +275,6 @@ def init_country():
 
 
 def create_account():
-    headers = {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-        "BobUniversity": args.university or "",
-        "BobToken": ""}
-
     email = "{0}@{1}.net".format(
         get_sentences(1)[0].split(" ")[0],
         get_sentences(1)[0].split(" ")[0]).lower()
@@ -326,7 +302,7 @@ def create_account():
     print("Creating account for '{0}'...".format(
         args.mail if args.mail else email))
 
-    response = send_request(url, values, headers)
+    response = send_request(url, values)
 
     try:
         print(response.content)
@@ -336,12 +312,6 @@ def create_account():
 
 
 def confirm(portfolioid, message):
-    headers = {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-        "BobUniversity": args.university or "",
-        "BobToken": ""}
-
     reasons = []
 
     if message == "RECHAZADO":
@@ -359,7 +329,7 @@ def confirm(portfolioid, message):
     print("Sending {0} confirmation for '{1}'...".format(
         message, portfolioid))
 
-    response = send_request(url, values, headers)
+    response = send_request(url, values)
 
     try:
         print(response.content)
@@ -369,12 +339,6 @@ def confirm(portfolioid, message):
 
 
 def completion(portfolioid):
-    headers = {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-        "BobUniversity": args.university or "",
-        "BobToken": ""}
-
     values = completionupdate_results[random.choice([0, 1])]
 
     values["PortfolioID"] = portfolioid
@@ -387,7 +351,7 @@ def completion(portfolioid):
     print("Sending completion update notification for '{0}'...".format(
         portfolioid))
 
-    response = send_request(url, values, headers)
+    response = send_request(url, values)
 
     try:
         print(response.content)

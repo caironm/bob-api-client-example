@@ -4,14 +4,8 @@ import os
 import csv
 
 apps = {
-    "mockup": "http://private-c90e-bob15.apiary-mock.com",
-    "gee": "https://bob-api-test.apigee.net/_ah/api/bob/v3",
     "local": "http://localhost:8080/_ah/api/bob/v1",
-    "local2": "http://192.168.1.103:8080/_ah/api/bob/v1",
     "qa": "https://1-dot-dazzling-rex-760.appspot.com/_ah/api/bob/v1",
-    "dev": "https://1-dot-applied-area-757.appspot.com/_ah/api/bob/v1",
-    "dev2": "https://1-dot-modular-ethos-760.appspot.com/_ah/api/bob/v1",
-    "dev3": "https://1-dot-awesome-caster-760.appspot.com/_ah/api/bob/v1",
 }
 
 countries = {
@@ -30,6 +24,8 @@ universities = [
         "name": "Bob Service",
         "country": "hn",
         "secret": "DPM5ATFPXV43SH65",
+        "key": "",
+        "key": "325ffeda-d43c-4a35-994a-75a5e1e9bfe6",
         "support_contact": "ricr.sb@gmail.com"
     },
     {
@@ -37,6 +33,7 @@ universities = [
         "name": "LNPS BI",
         "country": "hn",
         "secret": "5PJAK6PJXYEB2ACL",
+        "key": "05712b18-b457-4722-8732-7c32d980eb13",
         "support_contact": "ricr.sb@gmail.com"
     },
     {
@@ -44,20 +41,7 @@ universities = [
         "name": "Slingshot",
         "country": "us",
         "secret": "VY72IUVROA6LTYHK",
-        "support_contact": "ricr.sb@gmail.com"
-    },
-    {
-        "code": "unitec",
-        "name": "Universidad Tecnológica Centroamericana",
-        "country": "hn",
-        "secret": "BB6QZARKDZ4WRGVM",
-        "support_contact": "ricr.sb@gmail.com"
-    },
-    {
-        "code": "ceutec",
-        "name": "Centro Universitario Tecnológico",
-        "country": "hn",
-        "secret": "IRUOAPYARXATP6KO",
+        "key": "325ffeda-d43c-4a35-994a-75a5e1e9bfe6",
         "support_contact": "ricr.sb@gmail.com"
     },
     {
@@ -65,16 +49,62 @@ universities = [
         "name": "Universidad Privada del Norte",
         "country": "pe",
         "secret": "R3A7PZLCUQIJFUGX",
+        "key": "84b839d4-bee0-428a-880c-83fac0f98485",
         "support_contact": "ricr.sb@gmail.com"
     },
     {
-        "code": "cbs",
-        "name": "CEDEPE Business School",
+        "code": "uvm-cl",
+        "name": "Universidad Vina del Mar",
         "country": "br",
         "secret": "37DOKPKC46QHEP45",
+        "key": "325ffeda-d43c-4a35-994a-75a5e1e9bfe6",
         "support_contact": "ricr.sb@gmail.com"
     },
 ]
+
+universities_dict = {
+    "bob": {
+        "code": "bob",
+        "name": "Bob Service",
+        "country": "hn",
+        "secret": "DPM5ATFPXV43SH65",
+        "key": "",
+        "key": "325ffeda-d43c-4a35-994a-75a5e1e9bfe6",
+        "support_contact": "ricr.sb@gmail.com"
+    },
+    "lnpsbi": {
+        "code": "lnpsbi",
+        "name": "LNPS BI",
+        "country": "hn",
+        "secret": "5PJAK6PJXYEB2ACL",
+        "key": "05712b18-b457-4722-8732-7c32d980eb13",
+        "support_contact": "ricr.sb@gmail.com"
+    },
+    "cc": {
+        "code": "cc",
+        "name": "Slingshot",
+        "country": "us",
+        "secret": "VY72IUVROA6LTYHK",
+        "key": "325ffeda-d43c-4a35-994a-75a5e1e9bfe6",
+        "support_contact": "ricr.sb@gmail.com"
+    },
+    "upn": {
+        "code": "upn",
+        "name": "Universidad Privada del Norte",
+        "country": "pe",
+        "secret": "R3A7PZLCUQIJFUGX",
+        "key": "84b839d4-bee0-428a-880c-83fac0f98485",
+        "support_contact": "ricr.sb@gmail.com"
+    },
+    "uvm-cl": {
+        "code": "uvm-cl",
+        "name": "Universidad Vina del Mar",
+        "country": "br",
+        "secret": "37DOKPKC46QHEP45",
+        "key": "325ffeda-d43c-4a35-994a-75a5e1e9bfe6",
+        "support_contact": "ricr.sb@gmail.com"
+    },
+}
 
 clusters = {}
 
