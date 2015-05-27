@@ -9,6 +9,7 @@ from settings import apps, universities, init
 from fns import default, init_cluster, cleards
 from fns import init_occupation, init_uni, list_clusters
 from fns import init_country, create_account, confirm, completion
+from fns import phoneupdate
 
 parser = argparse.ArgumentParser()
 
@@ -42,6 +43,11 @@ parser.add_argument(
 
 parser.add_argument(
     "-cu", "--completionupdate",
+    type=str,
+    help="Portfolio ID to be updated after tests have ended")
+
+parser.add_argument(
+    "-pu", "--phoneupdate",
     type=str,
     help="Portfolio ID to be updated after tests have ended")
 
@@ -109,6 +115,9 @@ if __name__ == "__main__":
 
     if fns.args.completionupdate:
         completion(fns.args.completionupdate)
+
+    if fns.args.phoneupdate:
+        phoneupdate(fns.args.phoneupdate)
 
     if fns.args.reject:
         if fns.args.university:

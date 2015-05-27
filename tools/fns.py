@@ -5,6 +5,7 @@ import random
 import pyotp
 import traceback
 import sys
+import json
 
 from loremipsum import get_sentences
 from settings import apps, universities, countries, clusters, occupations
@@ -13,37 +14,40 @@ from settings import completionupdate_results, universities_dict
 
 args = None
 
-MAX_REQUEST_RETRIES = 10
+MAX_REQUEST_ATTEMPTS = 10
 
 
 def default():
     print("BOB Client v1.0")
 
 
-def send_request(url, values):
+def send_request(url, values, headers=None):
     retries = 0
 
     response = None
 
-    print('about to send request...')
+    print('sending request...')
 
-    while retries < MAX_REQUEST_RETRIES:
+    while retries < MAX_REQUEST_ATTEMPTS:
         try:
             uni_token = universities_dict[args.university]["secret"]
 
             totp = pyotp.TOTP(uni_token, interval=90)
             token = totp.now()
 
-            headers = {
-                "Content-Type": "application/json",
-                "Accept": "application/json"}
+            if not headers:
+                headers = {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"}
 
             headers["BobToken"] = str(token)
             headers["BobKey"] = universities_dict[args.university]["key"]
             headers["BobUniversity"] = args.university or ""
+            headers["Content-Length"] = len(json.dumps(values))
 
             response = requests.post(url, params=values, headers=headers)
 
+            print('attempt #%s' % (retries + 1))
             print(url)
 
             if response.status_code == 403:
@@ -284,6 +288,13 @@ def create_account():
     password = get_sentences(1)[0].split(" ")[0]
     phonenumber = str(random.randint(20000000, 99999999))
 
+    # test data, should return "RECHAZADO"
+    if not args.mail:
+        firstname = "Mateo"
+        paternallastname = "Perez"
+        maternallastname = "Perez"
+        email = "jonatasm@careercruising.com"
+
     values = {
         "EmailAddress": args.mail if args.mail else email,
         "FirstName": firstname,
@@ -341,6 +352,8 @@ def confirm(portfolioid, message):
 def completion(portfolioid):
     values = completionupdate_results[random.choice([0, 1])]
 
+    headers = None
+
     values["PortfolioID"] = portfolioid
     values["ResultURL"] += portfolioid
     values["MMDate"] = "22/11/2014"
@@ -351,7 +364,37 @@ def completion(portfolioid):
     print("Sending completion update notification for '{0}'...".format(
         portfolioid))
 
-    response = send_request(url, values)
+    response = None
+
+    response = send_request(url, values, headers=headers)
+
+    try:
+        print(response.content)
+    except:
+        print("Not a JSON response")
+        print("Failed.")
+
+
+def phoneupdate(portfolioid):
+    values = {}
+
+    headers = None
+
+    values["PortfolioID"] = portfolioid
+    values["PhoneNumber"] = str(int(random.random() * 1000000))
+    values["MMDate"] = "22/11/2014"
+    values["TerminosCC"] = "1"
+    values["Cluster1"] = ""
+    values["Cluster2"] = ""
+
+    url = "{0}/bob/completionupdate".format(apps[args.app])
+
+    print("Sending phone update notification for '{0}'...".format(
+        portfolioid))
+
+    response = None
+
+    response = send_request(url, values, headers=headers)
 
     try:
         print(response.content)
