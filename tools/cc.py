@@ -2,7 +2,8 @@
 # -*- coding: utf-8 -*-
 
 from openpyxl import load_workbook
-from cc_fns import load_clusters, clusters_sheet_name
+from cc_fns import load_clusters, load_occupations, country_codes
+from cc_fns import clusters_sheet_name, occupations_sheet_names
 import argparse
 import pprint
 
@@ -25,3 +26,14 @@ if __name__ == "__main__":
     clusters = load_clusters(wb, clusters_sheet_name)
 
     pprint.pprint(clusters)
+
+    postfix = 'mx'
+
+    occupations = {}
+
+    for country in country_codes:
+        occupations = load_occupations(
+            wb, occupations_sheet_names[country], country,
+            occupations)
+
+    pprint.pprint(occupations)
