@@ -290,10 +290,13 @@ def create_account():
 
     # test data, should return "RECHAZADO"
     if not args.mail:
-        firstname = "Mateo"
-        paternallastname = "Perez"
-        maternallastname = "Perez"
-        email = "jonatasm@careercruising.com"
+        firstname = "Ricardo"
+        paternallastname = "Salgado"
+        maternallastname = "Barcenas"
+        email = "ricr.sb@gmail.com"
+
+    if len(password) < 9:
+        password = "999999999999"
 
     values = {
         "EmailAddress": args.mail if args.mail else email,
