@@ -14,6 +14,12 @@ country_codes = [
     'mx', 'cl', 'pe', 'ec', 'br'
 ]
 
+country_universities = {
+    'mx': 'uvm',
+    'cl': 'uvmchile',
+    'pe': 'upn upc'
+}
+
 def load_clusters(wb, sheet_name):
     clusters = {}
 
@@ -40,6 +46,9 @@ def load_clusters(wb, sheet_name):
             if code not in clusters:
                 clusters[code] = {}
 
+                if local_postfix in country_universities:
+                    clusters[code]['universities'] = country_universities[local_postfix]
+
             clusters[code]["code"] = code
 
             if local_postfix == "":
@@ -60,6 +69,9 @@ def load_occupations(wb, sheet_name, local_postfix, occupations):
 
         if code not in occupations:
             occupations[code] = {}
+
+            if local_postfix in country_universities:
+                occupations[code]['universities'] = country_universities[local_postfix]
 
         occupations[code]["code"] = code
 
