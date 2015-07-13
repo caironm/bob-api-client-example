@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from openpyxl import load_workbook
-from cc_fns import load_clusters
+from cc_fns import load_clusters, clusters_sheet_name
 import argparse
 import pprint
 
@@ -22,6 +22,6 @@ if __name__ == "__main__":
 
     print('Sheet names: %s' % str(wb.get_sheet_names()))
 
-    clusters = load_clusters(wb)
+    clusters = load_clusters(wb, clusters_sheet_name)
 
     pprint.pprint(clusters)

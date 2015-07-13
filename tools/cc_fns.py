@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 
-def load_clusters(wb):
+clusters_sheet_name = "ClusterCodes"
+
+def load_clusters(wb, sheet_name):
     clusters = {}
 
-    ws = wb["ClusterCodes"]
+    ws = wb[sheet_name]
 
     country_postfixes = {
         "CCClusters": "",
