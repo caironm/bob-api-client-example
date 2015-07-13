@@ -10,8 +10,18 @@ from fns import default, init_cluster, cleards
 from fns import init_occupation, init_uni, list_clusters
 from fns import init_country, create_account, confirm, completion
 from fns import phoneupdate
+from fns import put_cluster, put_occupation
+from cc import load_all
+
+import pprint
+
 
 parser = argparse.ArgumentParser()
+
+parser.add_argument(
+    "-f", "--filename",
+    type=str,
+    help="Excel workbook filename")
 
 parser.add_argument(
     "-v", "--verbose",
@@ -136,6 +146,41 @@ if __name__ == "__main__":
             init_occupation()
         else:
             print("Specify the data directory: -d DIRECTORY")
+
+    if args.filename:
+        clusters, occupations = load_all(args.filename)
+
+        print('found %s clusters, updating...' % str(len(clusters)))
+
+        for item in clusters:
+            put_cluster(
+                    code=clusters[item]['code'],
+                    name=clusters[item]['name'],
+                    name_es=clusters[item]['name_es'],
+                    name_mx=clusters[item]['name_mx'],
+                    name_cl=clusters[item]['name_cl'],
+                    name_pe=clusters[item]['name_pe'],
+                    name_ec=clusters[item]['name_ec'],
+                    name_br=clusters[item]['name_br'])
+
+            print('%4s... done' % (clusters[item]['code']))
+
+        print('found %s occupations, updating...' % str(len(occupations)))
+
+        for item in occupations:
+            put_occupation(
+                    code=occupations[item]['code'],
+                    name=occupations[item]['name'],
+                    description='',
+                    name_es=occupations[item]['name_es'],
+                    name_mx=occupations[item]['name_mx'],
+                    name_cl=occupations[item]['name_cl'],
+                    name_pe=occupations[item]['name_pe'],
+                    name_ec=occupations[item]['name_ec'],
+                    name_br=occupations[item]['name_br'],
+                    clusters=occupations[item]['clusters'].join(' '))
+
+            print('%4s... done' % (occupations[item]['code']))
 
     if args.verbose:
         default()

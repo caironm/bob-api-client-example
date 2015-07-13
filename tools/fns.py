@@ -21,16 +21,20 @@ def default():
     print("BOB Client v1.0")
 
 
-def send_request(url, values, headers=None):
+def send_request(url, values, headers=None, as_bob=False):
     retries = 0
 
     response = None
 
-    print('sending request...')
+    if not as_bob:
+        print('sending request...')
 
     while retries < MAX_REQUEST_ATTEMPTS:
         try:
-            uni_token = universities_dict[args.university]["secret"]
+            if not as_bob:
+                uni_token = universities_dict[args.university]["secret"]
+            else:
+                uni_token = universities_dict["bob"]["secret"]
 
             totp = pyotp.TOTP(uni_token, interval=90)
             token = totp.now()
@@ -40,15 +44,22 @@ def send_request(url, values, headers=None):
                     "Content-Type": "application/json",
                     "Accept": "application/json"}
 
-            headers["BobToken"] = str(token)
-            headers["BobKey"] = universities_dict[args.university]["key"]
-            headers["BobUniversity"] = args.university or ""
+            if not as_bob:
+                headers["BobToken"] = str(token)
+                headers["BobKey"] = universities_dict[args.university]["key"]
+                headers["BobUniversity"] = args.university or ""
+            else:
+                headers["BobToken"] = ""
+                headers["BobKey"] = universities_dict["bob"]["key"]
+                headers["BobUniversity"] = "bob"
+
             headers["Content-Length"] = len(json.dumps(values))
 
             response = requests.post(url, params=values, headers=headers)
 
-            print('attempt #%s' % (retries + 1))
-            print(url)
+            if not as_bob:
+                print('attempt #%s' % (retries + 1))
+                print(url)
 
             if response.status_code == 403:
                 retries += 1
@@ -126,6 +137,55 @@ def insert_cluster(
     send_request(url, values)
 
 
+def put_cluster(
+        code, name,
+        name_es="", name_mx="",
+        name_cl="", name_pe="",
+        name_ec="", name_br=""):
+    uni_list_selected = []
+
+    if len(name_mx.strip()) > 0:
+        uni_list = [u["code"] for u in universities if u["country"] == "mx"]
+        for uni in uni_list:
+            uni_list_selected.append(uni)
+
+    if len(name_cl.strip()) > 0:
+        uni_list = [u["code"] for u in universities if u["country"] == "cl"]
+        for uni in uni_list:
+            uni_list_selected.append(uni)
+
+    if len(name_pe.strip()) > 0:
+        uni_list = [u["code"] for u in universities if u["country"] == "pe"]
+        for uni in uni_list:
+            uni_list_selected.append(uni)
+
+    if len(name_ec.strip()) > 0:
+        uni_list = [u["code"] for u in universities if u["country"] == "ec"]
+        for uni in uni_list:
+            uni_list_selected.append(uni)
+
+    if len(name_br.strip()) > 0:
+        uni_list = [u["code"] for u in universities if u["country"] == "br"]
+        for uni in uni_list:
+            uni_list_selected.append(uni)
+
+    values = {
+        "code": code,
+        "name": name,
+        "name_es": name_es,
+        "name_mx": name_mx,
+        "name_cl": name_cl,
+        "name_pe": name_pe,
+        "name_ec": name_ec,
+        "name_br": name_br,
+        "universities": ",".join(uni_list_selected)
+    }
+
+    url = "{0}/ui_cluster/put".format(apps[args.app])
+
+    send_request(url, values, as_bob=True)
+
+
 def init_cluster():
     print("Initializing Cluster kind...")
 
@@ -193,6 +253,58 @@ def insert_occupation(
     url = "{0}/occupation/insert".format(apps[args.app])
 
     send_request(url, values)
+
+
+def put_occupation(
+        code, name, description,
+        name_es="", name_mx="",
+        name_cl="", name_pe="",
+        name_ec="", name_br="",
+        clusters=""):
+    uni_list_selected = []
+
+    if len(name_mx.strip()) > 0:
+        uni_list = [u["code"] for u in universities if u["country"] == "mx"]
+        for uni in uni_list:
+            uni_list_selected.append(uni)
+
+    if len(name_cl.strip()) > 0:
+        uni_list = [u["code"] for u in universities if u["country"] == "cl"]
+        for uni in uni_list:
+            uni_list_selected.append(uni)
+
+    if len(name_pe.strip()) > 0:
+        uni_list = [u["code"] for u in universities if u["country"] == "pe"]
+        for uni in uni_list:
+            uni_list_selected.append(uni)
+
+    if len(name_ec.strip()) > 0:
+        uni_list = [u["code"] for u in universities if u["country"] == "ec"]
+        for uni in uni_list:
+            uni_list_selected.append(uni)
+
+    if len(name_br.strip()) > 0:
+        uni_list = [u["code"] for u in universities if u["country"] == "br"]
+        for uni in uni_list:
+            uni_list_selected.append(uni)
+
+    values = {
+        "code": code,
+        "name": name,
+        "description": description,
+        "name_es": name_es,
+        "name_mx": name_mx,
+        "name_cl": name_cl,
+        "name_pe": name_pe,
+        "name_ec": name_ec,
+        "name_br": name_br,
+        "universities": ",".join(uni_list_selected),
+        "clusters": clusters
+    }
+
+    url = "{0}/ui_occupation/put".format(apps[args.app])
+
+    send_request(url, values, as_bob=True)
 
 
 def init_occupation():

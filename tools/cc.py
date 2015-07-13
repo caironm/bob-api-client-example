@@ -8,26 +8,10 @@ import argparse
 import pprint
 
 
-parser = argparse.ArgumentParser()
-
-parser.add_argument(
-    "-f", "--filename",
-    type=str,
-    help="Portfolio ID to be confirmed")
-
-
-if __name__ == "__main__":
-    args = parser.parse_args()
-
-    wb = load_workbook(args.filename)
-
-    print('Sheet names: %s' % str(wb.get_sheet_names()))
+def load_all(filename):
+    wb = load_workbook(filename)
 
     clusters = load_clusters(wb, clusters_sheet_name)
-
-    pprint.pprint(clusters)
-
-    postfix = 'mx'
 
     occupations = {}
 
@@ -36,4 +20,23 @@ if __name__ == "__main__":
             wb, occupations_sheet_names[country], country,
             occupations)
 
-    pprint.pprint(occupations)
+    return (clusters, occupations)
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument(
+        "-f", "--filename",
+        type=str,
+        help="Excel workbook filename")
+
+    args = parser.parse_args()
+
+    if args.filename:
+        clusters, occupations = load_all(args.filename)
+
+        pprint.pprint(clusters)
+
+        pprint.pprint(occupations)
+

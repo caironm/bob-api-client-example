@@ -5,7 +5,9 @@ import csv
 
 apps = {
     "local": "http://localhost:8080/_ah/api/bob/v1",
+    "localui": "http://localhost:8080/_ah/api/ui/v1",
     "qa": "https://1-dot-dazzling-rex-760.appspot.com/_ah/api/bob/v1",
+    "qaui": "https://1-dot-dazzling-rex-760.appspot.com/_ah/api/ui/v1",
     "qa2": "https://2-dot-dazzling-rex-760.appspot.com/_ah/api/bob/v1",
 }
 
@@ -69,7 +71,6 @@ universities_dict = {
         "name": "Bob Service",
         "country": "hn",
         "secret": "DPM5ATFPXV43SH65",
-        "key": "",
         "key": "325ffeda-d43c-4a35-994a-75a5e1e9bfe6",
         "support_contact": "ricr.sb@gmail.com"
     },
