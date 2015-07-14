@@ -45,7 +45,7 @@ def load_clusters(wb, sheet_name):
 
             if code not in clusters:
                 clusters[code] = {
-                    "code": code, "universities": [],
+                    "code": str(code), "universities": [],
                     "name": "",
                     "name_es": "",
                     "name_mx": "",
@@ -55,7 +55,9 @@ def load_clusters(wb, sheet_name):
                     "name_br": ""}
 
             if local_postfix in country_universities:
-                clusters[code]['universities'].extend(country_universities[local_postfix])
+                for item in country_universities[local_postfix]:
+                    if item not in clusters[code]['universities']:
+                        clusters[code]['universities'].append(item)
 
             if local_postfix == "":
                 clusters[code]["name"] = name
@@ -71,11 +73,11 @@ def load_occupations(wb, sheet_name, local_postfix, occupations):
         code = row[0].value
         name_local = row[1].value
         name = row[2].value
-        clusters = row[4].value.split(',') if row[4].value else []
+        clusters = row[4].value.strip().split(',') if row[4].value else []
 
         if code not in occupations:
             occupations[code] = {
-                "code": code, "universities": [], "clusters": [],
+                "code": str(code), "universities": [], "clusters": [],
                 "name": "",
                 "name_es": "",
                 "name_mx": "",
@@ -85,13 +87,17 @@ def load_occupations(wb, sheet_name, local_postfix, occupations):
                 "name_br": ""}
 
         if local_postfix in country_universities:
-            occupations[code]['universities'].extend(country_universities[local_postfix])
+            for item in country_universities[local_postfix]:
+                if item not in occupations[code]['universities']:
+                    occupations[code]['universities'].append(item)
 
         if not "name" in occupations[code]:
             occupations[code]["name"] = name
 
         occupations[code]["name_%s" % local_postfix] = name_local
 
-        occupations[code]['clusters'].extend(clusters)
+        for item in clusters:
+            if item not in occupations[code]['clusters']:
+                occupations[code]['clusters'].append(item)
 
     return occupations

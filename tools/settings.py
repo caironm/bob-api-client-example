@@ -8,7 +8,8 @@ apps = {
     "localui": "http://localhost:8080/_ah/api/ui/v1",
     "qa": "https://1-dot-dazzling-rex-760.appspot.com/_ah/api/bob/v1",
     "qaui": "https://1-dot-dazzling-rex-760.appspot.com/_ah/api/ui/v1",
-    "qa2": "https://2-dot-dazzling-rex-760.appspot.com/_ah/api/bob/v1",
+    "prod": "https://liu-bob-production.appspot.com/_ah/api/bob/v1",
+    "produi": "https://liu-bob-production.appspot.com/_ah/api/ui/v1",
 }
 
 countries = {

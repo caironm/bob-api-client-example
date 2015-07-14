@@ -148,6 +148,8 @@ if __name__ == "__main__":
             print("Specify the data directory: -d DIRECTORY")
 
     if args.filename:
+        print('processing file: %s...' % args.filename)
+
         clusters, occupations = load_all(args.filename)
 
         print('found %s clusters, updating...' % str(len(clusters)))
@@ -161,7 +163,8 @@ if __name__ == "__main__":
                     name_cl=clusters[item]['name_cl'],
                     name_pe=clusters[item]['name_pe'],
                     name_ec=clusters[item]['name_ec'],
-                    name_br=clusters[item]['name_br'])
+                    name_br=clusters[item]['name_br'],
+                    universities_list=" ".join(clusters[item]['universities']))
 
             print('%4s... done' % (clusters[item]['code']))
 
@@ -178,7 +181,8 @@ if __name__ == "__main__":
                     name_pe=occupations[item]['name_pe'],
                     name_ec=occupations[item]['name_ec'],
                     name_br=occupations[item]['name_br'],
-                    clusters=occupations[item]['clusters'].join(' '))
+                    clusters=" ".join(occupations[item]['clusters']),
+                    universities_list=" ".join(occupations[item]['universities']))
 
             print('%4s... done' % (occupations[item]['code']))
 

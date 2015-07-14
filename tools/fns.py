@@ -6,6 +6,8 @@ import pyotp
 import traceback
 import sys
 import json
+import pprint
+import logging
 
 from loremipsum import get_sentences
 from settings import apps, universities, countries, clusters, occupations
@@ -15,6 +17,8 @@ from settings import completionupdate_results, universities_dict
 args = None
 
 MAX_REQUEST_ATTEMPTS = 10
+
+logging.captureWarnings(True)
 
 
 def default():
@@ -53,15 +57,28 @@ def send_request(url, values, headers=None, as_bob=False):
                 headers["BobKey"] = universities_dict["bob"]["key"]
                 headers["BobUniversity"] = "bob"
 
-            headers["Content-Length"] = len(json.dumps(values))
+            data = json.dumps(values)
 
-            response = requests.post(url, params=values, headers=headers)
+            headers["Content-Length"] = len(data)
 
             if not as_bob:
-                print('attempt #%s' % (retries + 1))
-                print(url)
+                response = requests.post(url, params=values, headers=headers)
+            else:
+                response = requests.post(url, data=data, headers=headers)
 
-            if response.status_code == 403:
+            if response.status_code >= 300 or response.status_code < 200:
+                print('using: %s' % url)
+
+                print('data:')
+
+                pprint.pprint(data)
+
+                print('response:')
+
+                print('attempt #%s' % (retries + 1))
+
+                pprint.pprint('response: %s' % str(response.status_code))
+
                 retries += 1
             else:
                 break
@@ -71,6 +88,9 @@ def send_request(url, values, headers=None, as_bob=False):
                 exc_type, exc_value, exc_traceback)
 
             print(formatted_exception)
+
+    if retries >= MAX_REQUEST_ATTEMPTS:
+        print('all attempts exhausted')
 
     return response
 
@@ -141,34 +161,8 @@ def put_cluster(
         code, name,
         name_es="", name_mx="",
         name_cl="", name_pe="",
-        name_ec="", name_br=""):
-    uni_list_selected = []
-
-    if len(name_mx.strip()) > 0:
-        uni_list = [u["code"] for u in universities if u["country"] == "mx"]
-        for uni in uni_list:
-            uni_list_selected.append(uni)
-
-    if len(name_cl.strip()) > 0:
-        uni_list = [u["code"] for u in universities if u["country"] == "cl"]
-        for uni in uni_list:
-            uni_list_selected.append(uni)
-
-    if len(name_pe.strip()) > 0:
-        uni_list = [u["code"] for u in universities if u["country"] == "pe"]
-        for uni in uni_list:
-            uni_list_selected.append(uni)
-
-    if len(name_ec.strip()) > 0:
-        uni_list = [u["code"] for u in universities if u["country"] == "ec"]
-        for uni in uni_list:
-            uni_list_selected.append(uni)
-
-    if len(name_br.strip()) > 0:
-        uni_list = [u["code"] for u in universities if u["country"] == "br"]
-        for uni in uni_list:
-            uni_list_selected.append(uni)
-
+        name_ec="", name_br="",
+        universities_list=""):
     values = {
         "code": code,
         "name": name,
@@ -178,7 +172,7 @@ def put_cluster(
         "name_pe": name_pe,
         "name_ec": name_ec,
         "name_br": name_br,
-        "universities": ",".join(uni_list_selected)
+        "universities": universities_list
     }
 
     url = "{0}/ui_cluster/put".format(apps[args.app])
@@ -260,34 +254,8 @@ def put_occupation(
         name_es="", name_mx="",
         name_cl="", name_pe="",
         name_ec="", name_br="",
-        clusters=""):
-    uni_list_selected = []
-
-    if len(name_mx.strip()) > 0:
-        uni_list = [u["code"] for u in universities if u["country"] == "mx"]
-        for uni in uni_list:
-            uni_list_selected.append(uni)
-
-    if len(name_cl.strip()) > 0:
-        uni_list = [u["code"] for u in universities if u["country"] == "cl"]
-        for uni in uni_list:
-            uni_list_selected.append(uni)
-
-    if len(name_pe.strip()) > 0:
-        uni_list = [u["code"] for u in universities if u["country"] == "pe"]
-        for uni in uni_list:
-            uni_list_selected.append(uni)
-
-    if len(name_ec.strip()) > 0:
-        uni_list = [u["code"] for u in universities if u["country"] == "ec"]
-        for uni in uni_list:
-            uni_list_selected.append(uni)
-
-    if len(name_br.strip()) > 0:
-        uni_list = [u["code"] for u in universities if u["country"] == "br"]
-        for uni in uni_list:
-            uni_list_selected.append(uni)
-
+        clusters="",
+        universities_list=""):
     values = {
         "code": code,
         "name": name,
@@ -298,7 +266,7 @@ def put_occupation(
         "name_pe": name_pe,
         "name_ec": name_ec,
         "name_br": name_br,
-        "universities": ",".join(uni_list_selected),
+        "universities": universities_list,
         "clusters": clusters
     }
 
