@@ -17,7 +17,8 @@ country_codes = [
 country_universities = {
     'mx': ['uvm'],
     'cl': ['uvmchile'],
-    'pe': ['upn', 'upc']
+    'pe': ['upn', 'upc'],
+    'br': ['orienta']
 }
 
 def load_clusters(wb, sheet_name):
@@ -93,6 +94,9 @@ def load_occupations(wb, sheet_name, local_postfix, occupations):
 
         if not "name" in occupations[code]:
             occupations[code]["name"] = name
+        else:
+            if len(occupations[code]["name"]) == 0:
+                occupations[code]["name"] = name
 
         occupations[code]["name_%s" % local_postfix] = name_local
 
