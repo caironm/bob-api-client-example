@@ -1,4 +1,4 @@
-#!/home/ricardo/.virtualenvs/ferris/bin/python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 import argparse

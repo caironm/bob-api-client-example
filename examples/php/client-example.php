@@ -2,30 +2,27 @@
 
     $url = "https://1-dot-dazzling-rex-760.appspot.com/_ah/api/bob/v1/bob/createaccount";
 
-    require_once('otphp/lib/otphp.php');
-
-    $totp = new \OTPHP\TOTP("R3A7PZLCUQIJFUGX", array('interval' => 90));
-
-    $token = $totp->now();
+    $bobuniversity = "orienta";
+    $bobkey = "094e3089-91e0-4449-b2d1-1110038ad88c";
 
     $data = json_encode(array(
        'Agreement'             => 'true',
-       'EmailAddress'          => 'darthvader@sithorder.net',
-       'FirstName'             => 'Anakin',
-       'PaternalLastName'      => 'Skywalker',
-       'MaternalLastName'      => 'Unknown',
+       'EmailAddress'          => $_POST["email"],
+       'FirstName'             => $_POST["first_name"],
+       'PaternalLastName'      => $_POST["paternal_lastname"],
+       'MaternalLastName'      => $_POST["maternal_lastname"],
        'GradeNumber'           => '5',
-       'Origin'                => 'upn',
-       'Password'              => '0123456789',
-       'PhoneNumber'           => '000-76543210',
-       'UserName'              => 'darthvader@sithorder.net'
+       'Origin'                => $bobuniversity,
+       'Password'              => $_POST["password"],
+       'PhoneNumber'           => $_POST["phone"],
+       'UserName'              => $_POST["email"]
     ));
 
     $headers = array(
       'Accept: application/json',
       'Content-Type: application/json',
-      'BobUniversity: upn',
-      "BobToken: $token"
+      'BobUniversity: $bobuniversity',
+      "BobKey: $bobkey"
     );
 
     var_dump($headers);

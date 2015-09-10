@@ -64,6 +64,14 @@ universities = [
         "key": "325ffeda-d43c-4a35-994a-75a5e1e9bfe6",
         "support_contact": "ricr.sb@gmail.com"
     },
+    {
+        "code": "orienta",
+        "name": "Orienta Brazil",
+        "country": "br",
+        "secret": "",
+        "key": "094e3089-91e0-4449-b2d1-1110038ad88c",
+        "support_contact": "ricr.sb@gmail.com"
+    },
 ]
 
 universities_dict = {
@@ -105,6 +113,14 @@ universities_dict = {
         "country": "br",
         "secret": "37DOKPKC46QHEP45",
         "key": "325ffeda-d43c-4a35-994a-75a5e1e9bfe6",
+        "support_contact": "ricr.sb@gmail.com"
+    },
+    "orienta": {
+        "code": "orienta",
+        "name": "Orienta Brazil",
+        "country": "br",
+        "secret": "",
+        "key": "094e3089-91e0-4449-b2d1-1110038ad88c",
         "support_contact": "ricr.sb@gmail.com"
     },
 }
