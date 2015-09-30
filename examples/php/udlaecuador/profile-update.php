@@ -5,8 +5,8 @@
 
     /* These two variables will be sent in custom headers in every requesto to Bob,
        they are unique for Orienta, the BobKey will be different in production */
-    $bobuniversity = "orienta";
-    $bobkey = "094e3089-91e0-4449-b2d1-1110038ad88c";
+    $bobuniversity = "udlaecuador";
+    $bobkey = "204f3ca7-a67f-486e-a0ab-e235a7f42cb9";
 
     $headers = array(
       'Accept: application/json',

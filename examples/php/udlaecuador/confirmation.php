@@ -1,12 +1,12 @@
 <?php
 
-    // This is the url to the profile update method for the QA environment
-    $url = "https://1-dot-dazzling-rex-760.appspot.com/_ah/api/bob/v1/bob/profileupdate";
+    // This is the url to the confirmation method for the QA environment
+    $url = "https://1-dot-dazzling-rex-760.appspot.com/_ah/api/bob/v1/bob/confirmation";
 
     /* These two variables will be sent in custom headers in every requesto to Bob,
        they are unique for Orienta, the BobKey will be different in production */
-    $bobuniversity = "orienta";
-    $bobkey = "094e3089-91e0-4449-b2d1-1110038ad88c";
+    $bobuniversity = "udlaecuador";
+    $bobkey = "204f3ca7-a67f-486e-a0ab-e235a7f42cb9";
 
     $headers = array(
       'Accept: application/json',
@@ -15,19 +15,22 @@
       "BobKey: $bobkey"
     );
 
-    /* This Portfolio ID was provided by the response of the Create Account method,  */
+    /* This Portfolio ID will be provided by the response of the Create Account method, 
+       if the account was successfully created in Orienta systems the messages should 
+       be "ACEPTADO" just like the example below, if for whatever reason the account is not 
+       created the message value should be "RECHAZADO", the reasons can be stated in the 
+       "Reason" field as an array of strings */
     $portfolioid = "1234567890";
 
-    /* The email of the user that changed status */
-    $email = "dvader@sithorder.net";
-
-    /* This variable is true if the user changed status from being a prospect to being a student */
-    $enrolled = true;
+    $reason = array(
+    	'This is used if the account is rejected message="RECHAZADO"'
+    );
 
     $data = json_encode(array(
-       'EmailAddress'          => $email,
+       'Message'               => 'ACEPTADO',
        'PortfolioID'           => $portfolioid,
-       'Enrolled'              => $enrolled
+       'Reason'                => $reason,
+       'Origin'                => $bobuniversity
     ));
 
     // boilerplate code to invoke the service
@@ -50,7 +53,8 @@
         return $result;
     }
 
-    /* This is an optional method used to notify Bob when a prospect turned into a student */
+    /* This call is the conclusion of the process, signals Bob to end its inner processes regarding the
+       account creation, it doesn't return anything */
     $resp = CallAPI("POST", $url, $data, $headers);
 
     // This is merely used for debugging locally, can be safely removed
