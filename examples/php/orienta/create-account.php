@@ -11,7 +11,7 @@
     $headers = array(
       'Accept: application/json',
       'Content-Type: application/json',
-      'BobUniversity: $bobuniversity',
+      "BobUniversity: $bobuniversity",
       "BobKey: $bobkey"
     );
 
